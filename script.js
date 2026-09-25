@@ -520,27 +520,55 @@ function sendMessage(event) {
 
   event.preventDefault();
 
-
   const name =
-    document.querySelector("#name").value;
+    document.querySelector("#name").value.trim();
 
   const phone =
-    document.querySelector("#phone").value;
+    document.querySelector("#phone").value.trim();
 
   const message =
-    document.querySelector("#message").value;
+    document.querySelector("#message").value.trim();
+
+
+  if (!name || !phone || !message) {
+
+    alert("Vui lòng nhập đầy đủ thông tin.");
+
+    return;
+
+  }
 
 
   const text =
     `Xin chào, tôi là ${name}.
-Số liên hệ: ${phone}.
-Nội dung: ${message}`;
+Số điện thoại: ${phone}.
+Nội dung cần tư vấn: ${message}`;
+
+
+  // Sao chép nội dung yêu cầu vào bộ nhớ tạm
+
+  if (navigator.clipboard) {
+
+    navigator.clipboard.writeText(text)
+      .catch(() => {});
+
+  }
+
+
+  // Mở Zalo theo số điện thoại của anh
+
+  const zaloUrl =
+    "https://zalo.me/0358854410";
+
+  window.open(zaloUrl, "_blank");
 
 
   alert(
-    "Nội dung yêu cầu:\n\n" +
+    "Nội dung yêu cầu đã được chuẩn bị.\n\n" +
     text +
-    "\n\nVui lòng liên hệ qua Zalo hoặc điện thoại."
+    "\n\n" +
+    "Nội dung đã được sao chép nếu trình duyệt cho phép.\n" +
+    "Anh hãy dán nội dung vào cuộc trò chuyện Zalo và gửi."
   );
 
 }
