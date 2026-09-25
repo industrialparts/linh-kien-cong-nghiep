@@ -10,6 +10,7 @@
    image     : Tên file ảnh
    ========================================================= */
 
+```javascript
 const products = [
 
   /* ================= NHÔM ĐỊNH HÌNH ================= */
@@ -18,32 +19,80 @@ const products = [
     category: "Nhôm định hình",
     code: "NH-2020",
     spec: "20 × 20 mm",
-    description: "Nhôm định hình dùng cho khung máy, bàn thao tác và thiết bị công nghiệp.",
-    image: ""
+    description: "Nhôm định hình 2020 dùng cho khung máy nhỏ, bàn thao tác, giá đỡ và thiết bị tự động hóa.",
+    image: "images/nhom-2020.jpg"
   },
 
   {
     category: "Nhôm định hình",
     code: "NH-3030",
     spec: "30 × 30 mm",
-    description: "Nhôm định hình công nghiệp, phù hợp làm khung máy và kết cấu lắp ráp.",
-    image: ""
+    description: "Nhôm định hình 3030 phù hợp làm khung máy, bàn thao tác, giá đỡ và kết cấu lắp ráp.",
+    image: "images/nhom-3030.jpg"
   },
 
   {
     category: "Nhôm định hình",
     code: "NH-4040",
     spec: "40 × 40 mm",
-    description: "Nhôm định hình kích thước 40 × 40 mm dùng cho khung máy công nghiệp.",
-    image: ""
+    description: "Nhôm định hình 4040 dùng phổ biến cho khung máy, bàn thao tác, băng tải và thiết bị công nghiệp.",
+    image: "images/nhom-4040.jpg"
   },
 
   {
     category: "Nhôm định hình",
     code: "NH-4080",
     spec: "40 × 80 mm",
-    description: "Nhôm định hình chịu lực, dùng cho khung máy và bàn thao tác.",
-    image: ""
+    description: "Nhôm định hình 4080 có tiết diện lớn, phù hợp khung máy, băng tải và kết cấu cần độ cứng cao.",
+    image: "images/nhom-4080.jpg"
+  },
+
+  {
+    category: "Nhôm định hình",
+    code: "NH-4545",
+    spec: "45 × 45 mm",
+    description: "Nhôm định hình 4545 dùng cho khung máy công nghiệp, bàn thao tác, vách máy và giá đỡ.",
+    image: "images/nhom-4545.jpg"
+  },
+
+  {
+    category: "Nhôm định hình",
+    code: "NH-5050",
+    spec: "50 × 50 mm",
+    description: "Nhôm định hình 5050 phù hợp khung máy, bàn thao tác, giá đỡ và hệ thống tự động hóa.",
+    image: "images/nhom-5050.jpg"
+  },
+
+  {
+    category: "Nhôm định hình",
+    code: "NH-6060",
+    spec: "60 × 60 mm",
+    description: "Nhôm định hình 6060 dùng cho khung máy lớn, bàn thao tác, băng tải và kết cấu công nghiệp.",
+    image: "images/nhom-6060.jpg"
+  },
+
+  {
+    category: "Nhôm định hình",
+    code: "NH-8080",
+    spec: "80 × 80 mm",
+    description: "Nhôm định hình 8080 phù hợp các kết cấu máy lớn và ứng dụng yêu cầu tiết diện, độ cứng cao.",
+    image: "images/nhom-8080.jpg"
+  },
+
+  {
+    category: "Nhôm định hình",
+    code: "NH-3060",
+    spec: "30 × 60 mm",
+    description: "Nhôm định hình 3060 dùng cho khung máy, giá đỡ, băng tải và vách bảo vệ thiết bị.",
+    image: "images/nhom-3060.jpg"
+  },
+
+  {
+    category: "Nhôm định hình",
+    code: "NH-40120",
+    spec: "40 × 120 mm",
+    description: "Nhôm định hình 40120 dùng cho kết cấu máy lớn, khung chịu lực, băng tải và hệ thống tự động hóa.",
+    image: "images/nhom-40120.jpg"
   },
 
 
@@ -212,6 +261,8 @@ const products = [
   }
 
 ];
+```
+
 
 
 
