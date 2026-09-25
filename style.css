@@ -156,3 +156,110 @@
   }
 
 }
+/* =====================================================
+   NÚT LIÊN HỆ NỔI GÓC PHẢI MÀN HÌNH
+   ===================================================== */
+
+.floating-contact {
+  position: fixed;
+
+  right: 22px;
+  bottom: 90px;
+
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+/* Nút gọi điện */
+
+.floating-phone,
+.floating-zalo {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.20);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* Màu nút gọi điện */
+
+.floating-phone {
+  background: #ff6b18;
+  color: #ffffff;
+
+  font-size: 25px;
+
+  border: 5px solid #fff3e8;
+}
+
+
+/* Màu nút Zalo */
+
+.floating-zalo {
+  background: #008fe5;
+  color: #ffffff;
+
+  font-size: 11px;
+
+  border: 4px solid #e5f6ff;
+}
+
+
+/* Hiệu ứng khi di chuột */
+
+.floating-phone:hover,
+.floating-zalo:hover {
+  transform: scale(1.12);
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.30);
+}
+
+
+/* Hiển thị trên điện thoại */
+
+@media (max-width: 600px) {
+
+  .floating-contact {
+    right: 14px;
+    bottom: 70px;
+
+    gap: 10px;
+  }
+
+  .floating-phone,
+  .floating-zalo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .floating-phone {
+    font-size: 22px;
+  }
+
+  .floating-zalo {
+    font-size: 10px;
+  }
+
+}
