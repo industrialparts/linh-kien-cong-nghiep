@@ -1,15 +1,3 @@
-/* =========================================================
-   DỮ LIỆU SẢN PHẨM
-   =========================================================
-   SAU NÀY ANH CHỈ CẦN THÊM / SỬA SẢN PHẨM Ở ĐÂY.
-   
-   category  : Tên danh mục
-   code      : Mã sản phẩm
-   spec      : Quy cách / kích thước
-   description: Mô tả
-   image     : Tên file ảnh
-   ========================================================= */
-
 ```javascript
 const products = [
 
