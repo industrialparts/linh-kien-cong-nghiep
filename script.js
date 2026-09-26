@@ -249,7 +249,6 @@ const products = [
   }
 
 ];
-```
 
 
 
