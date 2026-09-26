@@ -935,4 +935,3 @@ document.addEventListener(
 
     }
 );
-```
