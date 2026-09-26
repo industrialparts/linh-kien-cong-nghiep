@@ -1,4 +1,3 @@
-```javascript
 const products = [
 
     /* ================= NHÔM ĐỊNH HÌNH ================= */
