@@ -1,12 +1,12 @@
 /* =========================================================
-   WEBSITE LINH KIỆN CÔNG NGHIỆP
-   SCRIPT.JS - PHIÊN BẢN TRANG CHI TIẾT SẢN PHẨM
-   ========================================================= */
+   INDUSTRIAL PARTS
+   PRODUCT DATA + SEARCH + CATALOG
+========================================================= */
 
 
 /* =========================================================
-   1. DỮ LIỆU SẢN PHẨM
-   ========================================================= */
+   PRODUCT DATABASE
+========================================================= */
 
 const products = [
 
@@ -16,249 +16,170 @@ const products = [
         category: "Nhôm định hình",
         code: "NH-2020",
         name: "Nhôm định hình 2020",
-
         spec: "20 × 20 mm",
 
         specifications: {
             "Mã sản phẩm": "NH-2020",
             "Quy cách": "20 × 20 mm",
             "Vật liệu": "Nhôm định hình",
-            "Bề mặt": "Anodized",
-            "Màu sắc": "Bạc",
-            "Chiều dài": "Theo yêu cầu",
-            "Ứng dụng": "Khung máy, bàn thao tác, giá đỡ, thiết bị tự động hóa"
+            "Ứng dụng": "Khung máy, bàn thao tác, giá đỡ"
         },
 
-        description: `
-            Nhôm định hình 2020 là loại nhôm định hình kích thước nhỏ,
-            được sử dụng phổ biến trong chế tạo khung máy, bàn thao tác,
-            giá đỡ, vách bảo vệ và các thiết bị tự động hóa.
-
-            Sản phẩm có thiết kế dạng rãnh giúp dễ dàng lắp ghép với
-            ke góc, bulông, đai ốc và các phụ kiện nhôm định hình.
-
-            Nhôm có trọng lượng nhẹ, độ bền tốt, dễ gia công và có thể
-            tháo lắp hoặc thay đổi kết cấu khi cần thiết.
-
-            Phù hợp cho các ứng dụng cơ khí, tự động hóa và chế tạo
-            thiết bị công nghiệp.
-        `
+        description:
+            "Nhôm định hình 2020 dùng cho khung máy nhỏ, bàn thao tác, giá đỡ và thiết bị tự động hóa."
     },
 
     {
         category: "Nhôm định hình",
         code: "NH-3030",
         name: "Nhôm định hình 3030",
-
         spec: "30 × 30 mm",
 
         specifications: {
             "Mã sản phẩm": "NH-3030",
             "Quy cách": "30 × 30 mm",
             "Vật liệu": "Nhôm định hình",
-            "Bề mặt": "Anodized",
-            "Màu sắc": "Bạc",
-            "Chiều dài": "Theo yêu cầu",
-            "Ứng dụng": "Khung máy, bàn thao tác, giá đỡ, kết cấu lắp ráp"
+            "Ứng dụng": "Khung máy, bàn thao tác"
         },
 
-        description: `
-            Nhôm định hình 3030 dùng cho khung máy, bàn thao tác,
-            giá đỡ và các kết cấu lắp ráp công nghiệp.
-
-            Thiết kế rãnh giúp việc lắp đặt phụ kiện thuận tiện và
-            có thể thay đổi kết cấu nhanh chóng.
-        `
+        description:
+            "Nhôm định hình 3030 phù hợp chế tạo khung máy, bàn thao tác và hệ thống tự động hóa."
     },
 
     {
         category: "Nhôm định hình",
         code: "NH-4040",
         name: "Nhôm định hình 4040",
-
         spec: "40 × 40 mm",
 
         specifications: {
             "Mã sản phẩm": "NH-4040",
             "Quy cách": "40 × 40 mm",
             "Vật liệu": "Nhôm định hình",
-            "Bề mặt": "Anodized",
-            "Màu sắc": "Bạc",
-            "Chiều dài": "Theo yêu cầu",
-            "Ứng dụng": "Khung máy, bàn thao tác, băng tải, thiết bị công nghiệp"
+            "Ứng dụng": "Khung máy và kết cấu"
         },
 
-        description: `
-            Nhôm định hình 4040 là loại nhôm phổ biến trong chế tạo
-            khung máy và các thiết bị công nghiệp.
-
-            Sản phẩm có độ cứng tốt, dễ lắp ghép và phù hợp với nhiều
-            loại phụ kiện nhôm định hình.
-        `
+        description:
+            "Nhôm định hình 4040 dùng cho kết cấu khung máy và các thiết bị công nghiệp."
     },
 
     {
         category: "Nhôm định hình",
         code: "NH-4080",
         name: "Nhôm định hình 4080",
-
         spec: "40 × 80 mm",
 
         specifications: {
             "Mã sản phẩm": "NH-4080",
             "Quy cách": "40 × 80 mm",
             "Vật liệu": "Nhôm định hình",
-            "Bề mặt": "Anodized",
-            "Màu sắc": "Bạc",
-            "Chiều dài": "Theo yêu cầu",
-            "Ứng dụng": "Khung máy, băng tải, kết cấu chịu lực"
+            "Ứng dụng": "Khung máy chịu tải"
         },
 
-        description: `
-            Nhôm định hình 4080 có tiết diện lớn, phù hợp với các
-            kết cấu máy yêu cầu độ cứng cao.
-
-            Sản phẩm thường được sử dụng làm khung máy, băng tải,
-            chân máy và kết cấu chịu lực.
-        `
+        description:
+            "Nhôm định hình 4080 dùng cho kết cấu máy có yêu cầu độ cứng và khả năng chịu tải cao."
     },
 
     {
         category: "Nhôm định hình",
         code: "NH-4545",
         name: "Nhôm định hình 4545",
-
         spec: "45 × 45 mm",
 
         specifications: {
             "Mã sản phẩm": "NH-4545",
             "Quy cách": "45 × 45 mm",
             "Vật liệu": "Nhôm định hình",
-            "Bề mặt": "Anodized",
-            "Màu sắc": "Bạc",
-            "Chiều dài": "Theo yêu cầu",
-            "Ứng dụng": "Khung máy, bàn thao tác, vách máy, giá đỡ"
+            "Ứng dụng": "Khung máy"
         },
 
-        description: `
-            Nhôm định hình 4545 được sử dụng cho các kết cấu máy
-            công nghiệp, bàn thao tác và vách bảo vệ thiết bị.
-        `
+        description:
+            "Nhôm định hình 4545 sử dụng cho khung máy, bàn thao tác và kết cấu thiết bị."
     },
 
     {
         category: "Nhôm định hình",
         code: "NH-5050",
         name: "Nhôm định hình 5050",
-
         spec: "50 × 50 mm",
 
         specifications: {
             "Mã sản phẩm": "NH-5050",
             "Quy cách": "50 × 50 mm",
             "Vật liệu": "Nhôm định hình",
-            "Bề mặt": "Anodized",
-            "Màu sắc": "Bạc",
-            "Chiều dài": "Theo yêu cầu",
-            "Ứng dụng": "Khung máy, bàn thao tác, giá đỡ"
+            "Ứng dụng": "Khung máy"
         },
 
-        description: `
-            Nhôm định hình 5050 phù hợp với các kết cấu máy,
-            bàn thao tác, giá đỡ và hệ thống tự động hóa.
-        `
+        description:
+            "Nhôm định hình 5050 phù hợp các kết cấu máy và khung thiết bị công nghiệp."
     },
 
     {
         category: "Nhôm định hình",
         code: "NH-6060",
         name: "Nhôm định hình 6060",
-
         spec: "60 × 60 mm",
 
         specifications: {
             "Mã sản phẩm": "NH-6060",
             "Quy cách": "60 × 60 mm",
             "Vật liệu": "Nhôm định hình",
-            "Bề mặt": "Anodized",
-            "Màu sắc": "Bạc",
-            "Chiều dài": "Theo yêu cầu",
-            "Ứng dụng": "Khung máy lớn, bàn thao tác, băng tải"
+            "Ứng dụng": "Khung máy chịu tải"
         },
 
-        description: `
-            Nhôm định hình 6060 dùng cho khung máy lớn và các kết cấu
-            công nghiệp yêu cầu độ cứng tốt.
-        `
+        description:
+            "Nhôm định hình 6060 dùng cho kết cấu máy lớn và các ứng dụng yêu cầu độ cứng."
     },
 
     {
         category: "Nhôm định hình",
         code: "NH-8080",
         name: "Nhôm định hình 8080",
-
         spec: "80 × 80 mm",
 
         specifications: {
             "Mã sản phẩm": "NH-8080",
             "Quy cách": "80 × 80 mm",
             "Vật liệu": "Nhôm định hình",
-            "Bề mặt": "Anodized",
-            "Màu sắc": "Bạc",
-            "Chiều dài": "Theo yêu cầu",
-            "Ứng dụng": "Kết cấu máy lớn, khung chịu lực"
+            "Ứng dụng": "Khung máy công nghiệp"
         },
 
-        description: `
-            Nhôm định hình 8080 có tiết diện lớn, thích hợp cho
-            các kết cấu máy lớn và ứng dụng cần độ cứng cao.
-        `
+        description:
+            "Nhôm định hình 8080 dùng cho khung máy công nghiệp và kết cấu chịu tải."
     },
 
     {
         category: "Nhôm định hình",
         code: "NH-3060",
         name: "Nhôm định hình 3060",
-
         spec: "30 × 60 mm",
 
         specifications: {
             "Mã sản phẩm": "NH-3060",
             "Quy cách": "30 × 60 mm",
             "Vật liệu": "Nhôm định hình",
-            "Bề mặt": "Anodized",
-            "Màu sắc": "Bạc",
-            "Chiều dài": "Theo yêu cầu",
-            "Ứng dụng": "Khung máy, giá đỡ, băng tải, vách bảo vệ"
+            "Ứng dụng": "Khung máy"
         },
 
-        description: `
-            Nhôm định hình 3060 được sử dụng trong chế tạo khung máy,
-            giá đỡ, băng tải và vách bảo vệ thiết bị.
-        `
+        description:
+            "Nhôm định hình 3060 dùng cho khung máy, cửa bảo vệ và các kết cấu công nghiệp."
     },
 
     {
         category: "Nhôm định hình",
         code: "NH-40120",
         name: "Nhôm định hình 40120",
-
         spec: "40 × 120 mm",
 
         specifications: {
             "Mã sản phẩm": "NH-40120",
             "Quy cách": "40 × 120 mm",
             "Vật liệu": "Nhôm định hình",
-            "Bề mặt": "Anodized",
-            "Màu sắc": "Bạc",
-            "Chiều dài": "Theo yêu cầu",
-            "Ứng dụng": "Kết cấu máy lớn, khung chịu lực, băng tải"
+            "Ứng dụng": "Kết cấu máy"
         },
 
-        description: `
-            Nhôm định hình 40120 phù hợp với kết cấu máy lớn,
-            khung chịu lực và các hệ thống tự động hóa.
-        `
+        description:
+            "Nhôm định hình 40120 dùng cho các kết cấu máy yêu cầu độ cứng cao."
     },
 
 
@@ -267,39 +188,33 @@ const products = [
     {
         category: "Bản lề",
         code: "BL-01",
-        name: "Bản lề tủ máy",
-
-        spec: "Bản lề công nghiệp",
+        name: "Bản lề công nghiệp",
+        spec: "Loại tiêu chuẩn",
 
         specifications: {
             "Mã sản phẩm": "BL-01",
-            "Loại": "Bản lề tủ máy",
-            "Vật liệu": "Kim loại",
-            "Ứng dụng": "Tủ điện, tủ máy, thiết bị công nghiệp"
+            "Loại": "Bản lề công nghiệp",
+            "Ứng dụng": "Cửa máy, tủ máy"
         },
 
-        description: `
-            Bản lề dùng cho tủ điện, tủ máy và các thiết bị công nghiệp.
-            Thiết kế chắc chắn, thuận tiện cho việc đóng mở cửa tủ.
-        `
+        description:
+            "Bản lề công nghiệp dùng cho cửa máy, tủ điện và các kết cấu cơ khí."
     },
 
     {
         category: "Bản lề",
         code: "BL-02",
         name: "Bản lề nhôm",
-
-        spec: "Bản lề khung nhôm",
+        spec: "Loại nhôm",
 
         specifications: {
             "Mã sản phẩm": "BL-02",
             "Loại": "Bản lề nhôm",
-            "Ứng dụng": "Khung nhôm định hình, cửa bảo vệ máy"
+            "Ứng dụng": "Khung nhôm, cửa máy"
         },
 
-        description: `
-            Bản lề sử dụng cho khung nhôm định hình và cửa bảo vệ máy.
-        `
+        description:
+            "Bản lề nhôm dùng cho khung nhôm định hình và cửa bảo vệ máy."
     },
 
 
@@ -308,60 +223,49 @@ const products = [
     {
         category: "Bánh xe",
         code: "BX-50",
-        name: "Bánh xe công nghiệp D50",
-
-        spec: "D50 mm",
+        name: "Bánh xe công nghiệp",
+        spec: "D50",
 
         specifications: {
             "Mã sản phẩm": "BX-50",
             "Đường kính": "50 mm",
-            "Loại": "Bánh xe công nghiệp",
-            "Ứng dụng": "Bàn thao tác, xe đẩy, thiết bị"
+            "Ứng dụng": "Thiết bị, xe đẩy"
         },
 
-        description: `
-            Bánh xe công nghiệp D50 dùng cho bàn thao tác,
-            xe đẩy và các thiết bị sản xuất.
-        `
+        description:
+            "Bánh xe công nghiệp đường kính 50 mm dùng cho xe đẩy và thiết bị."
     },
 
     {
         category: "Bánh xe",
         code: "BX-75",
-        name: "Bánh xe công nghiệp D75",
-
-        spec: "D75 mm",
+        name: "Bánh xe công nghiệp",
+        spec: "D75",
 
         specifications: {
             "Mã sản phẩm": "BX-75",
             "Đường kính": "75 mm",
-            "Loại": "Bánh xe công nghiệp",
-            "Ứng dụng": "Xe đẩy, thiết bị sản xuất"
+            "Ứng dụng": "Thiết bị, xe đẩy"
         },
 
-        description: `
-            Bánh xe công nghiệp D75 phù hợp cho xe đẩy và
-            các thiết bị sản xuất.
-        `
+        description:
+            "Bánh xe công nghiệp đường kính 75 mm dùng cho thiết bị và xe đẩy."
     },
 
     {
         category: "Bánh xe",
         code: "BX-100",
-        name: "Bánh xe công nghiệp D100",
-
-        spec: "D100 mm",
+        name: "Bánh xe công nghiệp",
+        spec: "D100",
 
         specifications: {
             "Mã sản phẩm": "BX-100",
             "Đường kính": "100 mm",
-            "Loại": "Bánh xe công nghiệp"
+            "Ứng dụng": "Xe đẩy, thiết bị"
         },
 
-        description: `
-            Bánh xe công nghiệp kích thước D100 mm dùng cho
-            các thiết bị và xe đẩy công nghiệp.
-        `
+        description:
+            "Bánh xe công nghiệp đường kính 100 mm dùng cho xe đẩy và thiết bị công nghiệp."
     },
 
 
@@ -370,61 +274,49 @@ const products = [
     {
         category: "Chân tăng chỉnh",
         code: "CTC-M8",
-        name: "Chân tăng chỉnh M8",
-
+        name: "Chân tăng chỉnh",
         spec: "Ren M8",
 
         specifications: {
             "Mã sản phẩm": "CTC-M8",
             "Ren": "M8",
-            "Loại": "Chân tăng chỉnh",
-            "Ứng dụng": "Bàn máy, khung máy, thiết bị công nghiệp"
+            "Ứng dụng": "Máy móc, bàn thao tác"
         },
 
-        description: `
-            Chân tăng chỉnh ren M8 dùng để điều chỉnh độ cao
-            và cân bằng cho bàn máy, khung máy và thiết bị công nghiệp.
-        `
+        description:
+            "Chân tăng chỉnh ren M8 dùng cân bằng và điều chỉnh độ cao cho máy móc."
     },
 
     {
         category: "Chân tăng chỉnh",
         code: "CTC-M10",
-        name: "Chân tăng chỉnh M10",
-
+        name: "Chân tăng chỉnh",
         spec: "Ren M10",
 
         specifications: {
             "Mã sản phẩm": "CTC-M10",
             "Ren": "M10",
-            "Loại": "Chân tăng chỉnh",
-            "Ứng dụng": "Bàn máy, khung máy"
+            "Ứng dụng": "Máy móc, bàn thao tác"
         },
 
-        description: `
-            Chân tăng chỉnh ren M10 có thể điều chỉnh độ cao,
-            giúp cân bằng thiết bị trong quá trình lắp đặt.
-        `
+        description:
+            "Chân tăng chỉnh ren M10 dùng cho máy móc và bàn thao tác."
     },
 
     {
         category: "Chân tăng chỉnh",
         code: "CTC-M12",
-        name: "Chân tăng chỉnh M12",
-
+        name: "Chân tăng chỉnh",
         spec: "Ren M12",
 
         specifications: {
             "Mã sản phẩm": "CTC-M12",
             "Ren": "M12",
-            "Loại": "Chân tăng chỉnh",
-            "Ứng dụng": "Máy móc, khung công nghiệp"
+            "Ứng dụng": "Máy móc, thiết bị"
         },
 
-        description: `
-            Chân tăng chỉnh ren M12 dùng cho máy móc,
-            khung máy và các thiết bị công nghiệp.
-        `
+        description:
+            "Chân tăng chỉnh ren M12 dùng cho máy móc và các thiết bị công nghiệp."
     },
 
 
@@ -433,41 +325,33 @@ const products = [
     {
         category: "Nam châm",
         code: "NC-D20",
-        name: "Nam châm D20",
-
-        spec: "D20 mm",
+        name: "Nam châm tròn",
+        spec: "D20",
 
         specifications: {
             "Mã sản phẩm": "NC-D20",
             "Đường kính": "20 mm",
-            "Loại": "Nam châm tròn",
-            "Ứng dụng": "Gá đặt, cố định, cơ khí"
+            "Loại": "Nam châm tròn"
         },
 
-        description: `
-            Nam châm D20 dùng trong gá đặt, cố định chi tiết
-            và nhiều ứng dụng công nghiệp.
-        `
+        description:
+            "Nam châm tròn D20 sử dụng trong các cơ cấu gá, giữ và định vị."
     },
 
     {
         category: "Nam châm",
         code: "NC-D30",
-        name: "Nam châm D30",
-
-        spec: "D30 mm",
+        name: "Nam châm tròn",
+        spec: "D30",
 
         specifications: {
             "Mã sản phẩm": "NC-D30",
             "Đường kính": "30 mm",
-            "Loại": "Nam châm tròn",
-            "Ứng dụng": "Gá đặt, cơ khí"
+            "Loại": "Nam châm tròn"
         },
 
-        description: `
-            Nam châm tròn D30 dùng trong các ứng dụng cơ khí
-            và gá đặt.
-        `
+        description:
+            "Nam châm tròn D30 dùng trong cơ cấu gá và các thiết bị công nghiệp."
     },
 
 
@@ -476,60 +360,49 @@ const products = [
     {
         category: "Vòng bi",
         code: "BB-6000",
-        name: "Vòng bi 6000",
-
-        spec: "Vòng bi 6000",
+        name: "Vòng bi",
+        spec: "6000",
 
         specifications: {
             "Mã sản phẩm": "BB-6000",
             "Model": "6000",
-            "Loại": "Vòng bi tiêu chuẩn",
-            "Ứng dụng": "Máy móc, thiết bị công nghiệp"
+            "Loại": "Vòng bi rãnh sâu"
         },
 
-        description: `
-            Vòng bi 6000 là loại vòng bi tiêu chuẩn dùng
-            phổ biến trong máy móc và thiết bị công nghiệp.
-        `
+        description:
+            "Vòng bi 6000 dùng trong nhiều loại máy móc và thiết bị cơ khí."
     },
 
     {
         category: "Vòng bi",
         code: "BB-6001",
-        name: "Vòng bi 6001",
-
-        spec: "Vòng bi 6001",
+        name: "Vòng bi",
+        spec: "6001",
 
         specifications: {
             "Mã sản phẩm": "BB-6001",
             "Model": "6001",
-            "Loại": "Vòng bi tiêu chuẩn",
-            "Ứng dụng": "Cơ cấu quay"
+            "Loại": "Vòng bi rãnh sâu"
         },
 
-        description: `
-            Vòng bi 6001 dùng cho các cơ cấu quay và thiết bị cơ khí.
-        `
+        description:
+            "Vòng bi 6001 sử dụng trong các thiết bị và cơ cấu quay."
     },
 
     {
         category: "Vòng bi",
         code: "BB-6200",
-        name: "Vòng bi 6200",
-
-        spec: "Vòng bi 6200",
+        name: "Vòng bi",
+        spec: "6200",
 
         specifications: {
             "Mã sản phẩm": "BB-6200",
             "Model": "6200",
-            "Loại": "Vòng bi tiêu chuẩn",
-            "Ứng dụng": "Máy móc công nghiệp"
+            "Loại": "Vòng bi rãnh sâu"
         },
 
-        description: `
-            Vòng bi 6200 là loại vòng bi công nghiệp thông dụng,
-            được sử dụng trong nhiều cơ cấu quay.
-        `
+        description:
+            "Vòng bi 6200 dùng cho máy móc và cơ cấu truyền động."
     },
 
 
@@ -538,1241 +411,1158 @@ const products = [
     {
         category: "Bu lông & ốc vít",
         code: "BL-M6",
-        name: "Bu lông M6",
-
+        name: "Bu lông lục giác",
         spec: "M6",
 
         specifications: {
             "Mã sản phẩm": "BL-M6",
-            "Kích thước ren": "M6",
-            "Loại": "Bu lông tiêu chuẩn",
-            "Ứng dụng": "Lắp ráp cơ khí"
+            "Ren": "M6",
+            "Loại": "Bu lông lục giác"
         },
 
-        description: `
-            Bu lông M6 tiêu chuẩn dùng trong lắp ráp cơ khí,
-            thiết bị và kết cấu công nghiệp.
-        `
+        description:
+            "Bu lông lục giác M6 dùng trong lắp ráp cơ khí và thiết bị."
     },
 
     {
         category: "Bu lông & ốc vít",
         code: "BL-M8",
-        name: "Bu lông M8",
-
+        name: "Bu lông lục giác",
         spec: "M8",
 
         specifications: {
             "Mã sản phẩm": "BL-M8",
-            "Kích thước ren": "M8",
-            "Loại": "Bu lông tiêu chuẩn",
-            "Ứng dụng": "Kết cấu và thiết bị công nghiệp"
+            "Ren": "M8",
+            "Loại": "Bu lông lục giác"
         },
 
-        description: `
-            Bu lông M8 tiêu chuẩn dùng trong kết cấu,
-            lắp ráp máy móc và thiết bị công nghiệp.
-        `
+        description:
+            "Bu lông lục giác M8 dùng trong lắp ráp cơ khí và kết cấu máy."
     },
 
     {
         category: "Bu lông & ốc vít",
         code: "BL-M10",
-        name: "Bu lông M10",
-
+        name: "Bu lông lục giác",
         spec: "M10",
 
         specifications: {
             "Mã sản phẩm": "BL-M10",
-            "Kích thước ren": "M10",
-            "Loại": "Bu lông cơ khí tiêu chuẩn"
+            "Ren": "M10",
+            "Loại": "Bu lông lục giác"
         },
 
-        description: `
-            Bu lông M10 dùng trong các ứng dụng lắp ráp cơ khí
-            và kết cấu công nghiệp.
-        `
+        description:
+            "Bu lông lục giác M10 dùng trong lắp ráp cơ khí và thiết bị công nghiệp."
     }
+
 ];
 
 
 /* =========================================================
-   2. ĐƯỜNG DẪN ẢNH
-   ========================================================= */
+   CATEGORY DATA
+========================================================= */
+
+const categoryIcons = {
+
+    "Nhôm định hình": "▦",
+    "Bản lề": "◈",
+    "Bánh xe": "◉",
+    "Chân tăng chỉnh": "⌗",
+    "Nam châm": "◆",
+    "Vòng bi": "◎",
+    "Bu lông & ốc vít": "⌁"
+
+};
+
+
+const categoryDescriptions = {
+
+    "Nhôm định hình":
+        "Nhôm định hình và phụ kiện dùng cho khung máy, bàn thao tác và tự động hóa.",
+
+    "Bản lề":
+        "Bản lề công nghiệp cho cửa máy, tủ máy và khung nhôm.",
+
+    "Bánh xe":
+        "Bánh xe công nghiệp dùng cho xe đẩy, thiết bị và máy móc.",
+
+    "Chân tăng chỉnh":
+        "Chân tăng chỉnh dùng cân bằng và điều chỉnh độ cao máy.",
+
+    "Nam châm":
+        "Nam châm và linh kiện từ tính cho cơ cấu gá và định vị.",
+
+    "Vòng bi":
+        "Các loại vòng bi sử dụng trong máy móc và cơ cấu quay.",
+
+    "Bu lông & ốc vít":
+        "Bu lông, ốc vít và phụ kiện liên kết cơ khí."
+
+};
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+let currentCategory = "";
+let currentProduct = null;
+
+let currentImageIndex = 0;
+let viewerImages = [];
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
 
 function getProductImages(code) {
 
-    const safeCode = code
-        .trim()
-        .replace(/\s+/g, "-");
-
     return [
-        `images/${safeCode}-1.jpg`,
-        `images/${safeCode}-2.jpg`,
-        `images/${safeCode}-3.jpg`,
-        `images/${safeCode}-4.jpg`,
-        `images/${safeCode}-5.jpg`
+        `images/${code}-1.jpg`,
+        `images/${code}-2.jpg`,
+        `images/${code}-3.jpg`,
+        `images/${code}-4.jpg`,
+        `images/${code}-5.jpg`
     ];
+
 }
 
 
 /* =========================================================
-   3. ICON DANH MỤC
-   ========================================================= */
+   IMAGE EXIST CHECK
+========================================================= */
 
-function getCategoryIcon(category) {
+function imageExists(url) {
 
-    const icons = {
+    return new Promise(resolve => {
 
-        "Nhôm định hình": "▥",
-        "Bản lề": "◈",
-        "Bánh xe": "◉",
-        "Chân tăng chỉnh": "⌃",
-        "Nam châm": "◉",
-        "Vòng bi": "⚙",
-        "Bu lông & ốc vít": "🔩"
+        const img = new Image();
 
-    };
+        img.onload = () => resolve(true);
 
-    return icons[category] || "▦";
+        img.onerror = () => resolve(false);
+
+        img.src = url;
+
+    });
+
 }
 
 
 /* =========================================================
-   4. TẠO DANH MỤC SẢN PHẨM
-   ========================================================= */
+   CREATE CATEGORIES
+========================================================= */
 
 function createCategories() {
 
-    const categoryGrid =
-        document.querySelector("#category-grid");
+    const grid = document.getElementById("category-grid");
 
-    if (!categoryGrid) {
-        console.error("Không tìm thấy #category-grid");
-        return;
-    }
-
-    categoryGrid.innerHTML = "";
+    if (!grid) return;
 
     const categories = [
         ...new Set(products.map(product => product.category))
     ];
 
-    categories.forEach(category => {
+    grid.innerHTML = categories.map(category => {
 
-        const categoryProducts =
+        const count =
             products.filter(
                 product => product.category === category
-            );
+            ).length;
 
-        const card =
-            document.createElement("article");
+        return `
 
-        card.className = "product-card category-card";
+            <div
+                class="category-card"
+                onclick="showProducts('${escapeAttribute(category)}')">
 
-        card.innerHTML = `
+                <div class="category-icon">
+                    ${categoryIcons[category] || "◼"}
+                </div>
 
-            <div class="product-image category-icon">
-                <span>
-                    ${getCategoryIcon(category)}
+                <h3>
+                    ${category}
+                </h3>
+
+                <p>
+                    ${categoryDescriptions[category] || ""}
+                </p>
+
+                <span class="category-arrow">
+                    ${count} sản phẩm →
                 </span>
+
             </div>
-
-            <h3>${category}</h3>
-
-            <p>
-                ${categoryProducts.length} sản phẩm
-            </p>
-
-            <a
-                href="#san-pham"
-                class="category-link"
-            >
-                Xem sản phẩm →
-            </a>
 
         `;
 
-        const link =
-            card.querySelector(".category-link");
+    }).join("");
 
-        if (link) {
+    const countElement =
+        document.getElementById("product-count");
 
-            link.addEventListener(
-                "click",
-                function(event) {
+    if (countElement) {
 
-                    event.preventDefault();
+        countElement.textContent =
+            `${products.length} sản phẩm`;
 
-                    showProducts(category);
+    }
 
-                }
-            );
-        }
-
-        categoryGrid.appendChild(card);
-
-    });
 }
 
 
 /* =========================================================
-   5. HIỂN THỊ DANH SÁCH SẢN PHẨM TRONG DANH MỤC
-   ========================================================= */
+   SHOW HOME
+========================================================= */
 
-function showProducts(category) {
+function showHome() {
 
-    const categoryGrid =
-        document.querySelector("#category-grid");
+    currentCategory = "";
+    currentProduct = null;
 
-    const productSection =
-        document.querySelector("#product-list-section");
+    document.getElementById("product-list-section").style.display =
+        "none";
 
-    const productList =
-        document.querySelector("#product-list");
+    document.getElementById("product-detail-section").style.display =
+        "none";
 
-    const title =
-        document.querySelector("#product-category-title");
+    document.getElementById("category-grid").style.display =
+        "grid";
 
-    const description =
-        document.querySelector("#product-category-description");
+    clearSearch();
 
-    if (
-        !categoryGrid ||
-        !productSection ||
-        !productList ||
-        !title ||
-        !description
-    ) {
+    history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+    );
 
-        console.error(
-            "Thiếu phần tử HTML cần thiết."
-        );
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
-        return;
-    }
+    closeMobileMenu();
+
+}
+
+
+/* =========================================================
+   SHOW CATEGORIES
+========================================================= */
+
+function showCategories() {
+
+    currentCategory = "";
+    currentProduct = null;
+
+    document.getElementById("product-list-section").style.display =
+        "none";
+
+    document.getElementById("product-detail-section").style.display =
+        "none";
+
+    document.getElementById("category-grid").style.display =
+        "grid";
+
+    document.getElementById("product-list").innerHTML = "";
+
+    document.getElementById("product-category-title").textContent =
+        "";
+
+    document.getElementById("product-category-description").textContent =
+        "";
+
+    document.getElementById("category-search").value =
+        "";
+
+    history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+    );
+
+    document.getElementById("products").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================================
+   SHOW PRODUCTS
+========================================================= */
+
+function showProducts(category, updateHash = true) {
+
+    currentCategory = category;
+
+    currentProduct = null;
 
     const categoryProducts =
         products.filter(
             product => product.category === category
         );
 
-    categoryGrid.style.display = "none";
+    document.getElementById("category-grid").style.display =
+        "none";
 
-    productSection.style.display = "block";
+    document.getElementById("product-detail-section").style.display =
+        "none";
 
-    title.textContent = category;
+    document.getElementById("product-list-section").style.display =
+        "block";
 
-    description.textContent =
-        `Danh sách sản phẩm ${category.toLowerCase()}.`;
+    document.getElementById("product-category-title").textContent =
+        category;
 
-    productList.innerHTML = "";
+    document.getElementById("product-category-description").textContent =
+        categoryDescriptions[category] || "";
 
-    categoryProducts.forEach(product => {
+    document.getElementById("category-product-count").textContent =
+        `${categoryProducts.length} sản phẩm`;
 
-        const card =
-            document.createElement("article");
+    document.getElementById("category-search").value =
+        "";
 
-        card.className =
-            "product-card product-list-card";
+    renderProductList(categoryProducts);
 
-        const images =
-            getProductImages(product.code);
+    if (updateHash) {
 
-        card.innerHTML = `
+        history.replaceState(
+            null,
+            "",
+            `#category=${encodeURIComponent(category)}`
+        );
 
-            <div class="product-list-image">
+    }
 
-                <img
-                    src="${images[0]}"
-                    alt="${product.name}"
-                    loading="lazy"
-                    onerror="this.style.display='none';"
-                >
-
-            </div>
-
-            <div class="product-list-info">
-
-                <h3>
-                    ${product.name}
-                </h3>
-
-                <p>
-                    <strong>Mã:</strong>
-                    ${product.code}
-                </p>
-
-                <p>
-                    <strong>Quy cách:</strong>
-                    ${product.spec}
-                </p>
-
-                <p>
-                    ${product.description.trim()}
-                </p>
-
-                <button
-                    type="button"
-                    class="btn primary product-detail-btn"
-                >
-                    Xem chi tiết →
-                </button>
-
-            </div>
-
-        `;
-
-        const detailButton =
-            card.querySelector(".product-detail-btn");
-
-        if (detailButton) {
-
-            detailButton.addEventListener(
-                "click",
-                function() {
-
-                    showProductDetail(product.code);
-
-                }
-            );
-        }
-
-        productList.appendChild(card);
-
+    document.getElementById("products").scrollIntoView({
+        behavior: "smooth"
     });
 
-    window.location.hash =
-        `category=${encodeURIComponent(category)}`;
-
-    productSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
 }
 
 
 /* =========================================================
-   6. TRANG CHI TIẾT SẢN PHẨM
-   ========================================================= */
+   RENDER PRODUCT LIST
+========================================================= */
 
-function showProductDetail(code) {
+async function renderProductList(list) {
+
+    const grid =
+        document.getElementById("product-list");
+
+    if (!grid) return;
+
+    if (!list.length) {
+
+        grid.innerHTML = `
+            <div class="empty-products">
+                Không tìm thấy sản phẩm.
+            </div>
+        `;
+
+        return;
+    }
+
+    grid.innerHTML = list.map(product => {
+
+        const images =
+            getProductImages(product.code);
+
+        return `
+
+            <article
+                class="product-card"
+                onclick="showProductDetail('${product.code}')">
+
+                <img
+                    class="product-card-image"
+                    src="${images[0]}"
+                    alt="${product.code}"
+                    onerror="this.style.visibility='hidden'">
+
+                <div class="product-card-body">
+
+                    <div class="product-code">
+                        ${product.code}
+                    </div>
+
+                    <div class="product-name">
+                        ${product.name}
+                    </div>
+
+                    <div class="product-spec">
+                        ${product.spec}
+                    </div>
+
+                    <div class="product-card-link">
+                        Xem chi tiết →
+                    </div>
+
+                </div>
+
+            </article>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* =========================================================
+   FILTER CATEGORY
+========================================================= */
+
+function filterCategoryProducts(keyword) {
+
+    const text =
+        normalizeText(keyword);
+
+    const list =
+        products.filter(product => {
+
+            if (product.category !== currentCategory) {
+                return false;
+            }
+
+            const searchText = normalizeText(
+                [
+                    product.code,
+                    product.name,
+                    product.spec,
+                    product.description,
+                    ...Object.values(product.specifications || {})
+                ].join(" ")
+            );
+
+            return searchText.includes(text);
+
+        });
+
+    document.getElementById("category-product-count").textContent =
+        `${list.length} sản phẩm`;
+
+    renderProductList(list);
+
+}
+
+
+/* =========================================================
+   SEARCH PRODUCTS
+========================================================= */
+
+function searchProducts(keyword) {
+
+    const input =
+        document.getElementById("product-search");
+
+    const results =
+        document.getElementById("search-results");
+
+    const clearButton =
+        document.getElementById("search-clear");
+
+    const text =
+        normalizeText(keyword);
+
+    clearButton.style.display =
+        text ? "block" : "none";
+
+    if (!text) {
+
+        results.innerHTML = "";
+
+        return;
+
+    }
+
+
+    const matched =
+        products.filter(product => {
+
+            const searchText =
+                normalizeText(
+                    [
+                        product.code,
+                        product.name,
+                        product.spec,
+                        product.category,
+                        product.description,
+                        ...Object.values(
+                            product.specifications || {}
+                        )
+                    ].join(" ")
+                );
+
+            return searchText.includes(text);
+
+        });
+
+
+    if (!matched.length) {
+
+        results.innerHTML = `
+            <div class="search-no-result">
+                Không tìm thấy sản phẩm phù hợp với
+                "<strong>${escapeHtml(keyword)}</strong>".
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const limited =
+        matched.slice(0, 10);
+
+
+    results.innerHTML = `
+
+        <div class="search-result-box">
+
+            ${limited.map(product => {
+
+                const image =
+                    getProductImages(product.code)[0];
+
+                return `
+
+                    <div
+                        class="search-result-item"
+                        onclick="showProductDetail('${product.code}')">
+
+                        <img
+                            class="search-result-image"
+                            src="${image}"
+                            alt="${product.code}"
+                            onerror="this.style.visibility='hidden'">
+
+                        <div>
+
+                            <div class="search-result-code">
+                                ${product.code}
+                            </div>
+
+                            <div class="search-result-name">
+                                ${product.name}
+                                · ${product.spec}
+                            </div>
+
+                            <div class="search-result-name">
+                                ${product.category}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }).join("")}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CLEAR SEARCH
+========================================================= */
+
+function clearSearch() {
+
+    const input =
+        document.getElementById("product-search");
+
+    const results =
+        document.getElementById("search-results");
+
+    const clearButton =
+        document.getElementById("search-clear");
+
+    if (input) input.value = "";
+
+    if (results) results.innerHTML = "";
+
+    if (clearButton) clearButton.style.display = "none";
+
+}
+
+
+/* =========================================================
+   PRODUCT DETAIL
+========================================================= */
+
+function showProductDetail(code, updateHash = true) {
 
     const product =
         products.find(
             item => item.code === code
         );
 
-    if (!product) {
+    if (!product) return;
 
-        console.error(
-            "Không tìm thấy sản phẩm:",
-            code
-        );
+    currentProduct = product;
 
-        return;
-    }
+    currentCategory = product.category;
 
-    const categoryGrid =
-        document.querySelector("#category-grid");
-
-    const productSection =
-        document.querySelector("#product-list-section");
-
-    const productList =
-        document.querySelector("#product-list");
-
-    const title =
-        document.querySelector("#product-category-title");
-
-    const description =
-        document.querySelector("#product-category-description");
-
-    if (
-        !productSection ||
-        !productList ||
-        !title ||
-        !description
-    ) {
-
-        console.error(
-            "Không tìm thấy khu vực sản phẩm."
-        );
-
-        return;
-    }
-
-    if (categoryGrid) {
-        categoryGrid.style.display = "none";
-    }
-
-    productSection.style.display = "block";
-
-    title.textContent =
-        product.name;
-
-    description.textContent =
-        `Mã sản phẩm: ${product.code}`;
-
-    productList.innerHTML = "";
+    currentImageIndex = 0;
 
     const images =
         getProductImages(product.code);
 
+    viewerImages = images;
+
+
+    document.getElementById("category-grid").style.display =
+        "none";
+
+    document.getElementById("product-list-section").style.display =
+        "none";
+
+    document.getElementById("product-detail-section").style.display =
+        "block";
+
+
     const detail =
-        document.createElement("div");
+        document.getElementById("product-detail");
 
-    detail.className =
-        "product-detail-page";
 
-    /* -----------------------------------------
-       GALLERY
-       ----------------------------------------- */
-
-    let galleryHTML = `
-
-        <div class="product-detail-gallery">
-
-            <div class="main-product-image">
-
-                <img
-                    id="main-product-image"
-                    src="${images[0]}"
-                    alt="${product.name}"
-                    onclick="openImageViewer(0)"
-                    onerror="this.style.display='none';"
-                >
-
-                <button
-                    type="button"
-                    class="gallery-prev"
-                    onclick="changeMainImage(-1)"
-                    aria-label="Ảnh trước"
-                >
-                    ‹
-                </button>
-
-                <button
-                    type="button"
-                    class="gallery-next"
-                    onclick="changeMainImage(1)"
-                    aria-label="Ảnh tiếp theo"
-                >
-                    ›
-                </button>
-
-            </div>
-
-            <div class="product-thumbnails">
-    `;
-
-    images.forEach((image, index) => {
-
-        galleryHTML += `
-
-            <button
-                type="button"
-                class="product-thumbnail ${
-                    index === 0 ? "active" : ""
-                }"
-                onclick="selectProductImage(${index})"
-            >
-
-                <img
-                    src="${image}"
-                    alt="${product.name} - Ảnh ${index + 1}"
-                    loading="lazy"
-                    onerror="this.parentElement.style.display='none';"
-                >
-
-            </button>
-
-        `;
-
-    });
-
-    galleryHTML += `
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    /* -----------------------------------------
-       THÔNG TIN SẢN PHẨM
-       ----------------------------------------- */
-
-    let specificationsHTML = `
-
-        <div class="product-detail-info">
-
-            <div class="product-detail-heading">
-
-                <span class="product-code">
-                    ${product.code}
-                </span>
-
-                <h2>
-                    ${product.name}
-                </h2>
-
-            </div>
-
-            <div class="technical-specifications">
-
-                <h3>
-                    Thông số kỹ thuật
-                </h3>
-
-                <table>
-
-                    <tbody>
-    `;
-
-    Object.entries(product.specifications)
-        .forEach(([key, value]) => {
-
-            specificationsHTML += `
-
-                <tr>
-
-                    <th>
-                        ${key}
-                    </th>
-
-                    <td>
-                        ${value}
-                    </td>
-
-                </tr>
-
-            `;
-
-        });
-
-    specificationsHTML += `
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    /* -----------------------------------------
-       MÔ TẢ CHI TIẾT
-       ----------------------------------------- */
-
-    const formattedDescription =
-        product.description
-            .trim()
-            .split("\n")
-            .map(
-                paragraph =>
-                    `<p>${paragraph.trim()}</p>`
-            )
-            .join("");
-
-    const descriptionHTML = `
-
-        <div class="product-full-description">
-
-            <h3>
-                Mô tả sản phẩm
-            </h3>
-
-            ${formattedDescription}
-
-        </div>
-
-    `;
-
-
-    /* -----------------------------------------
-       NÚT LIÊN HỆ
-       ----------------------------------------- */
-
-    const contactHTML = `
-
-        <div class="product-detail-actions">
-
-            <button
-                type="button"
-                class="btn primary"
-                onclick="fillContact('${product.code}')"
-            >
-                Liên hệ báo giá
-            </button>
-
-            <button
-                type="button"
-                class="btn secondary"
-                onclick="goBackToCategory('${product.category}')"
-            >
-                ← Quay lại danh mục
-            </button>
-
-        </div>
-
-    `;
+    const specifications =
+        Object.entries(
+            product.specifications || {}
+        );
 
 
     detail.innerHTML = `
 
-        <div class="product-detail-top">
+        <div class="product-detail">
 
-            ${galleryHTML}
-
-            ${specificationsHTML}
-
-        </div>
-
-        ${descriptionHTML}
-
-        ${contactHTML}
-
-    `;
-
-    productList.appendChild(detail);
+            <div class="detail-top">
 
 
-    /* -----------------------------------------
-       LƯU TRẠNG THÁI VÀO URL
-       ----------------------------------------- */
+                <!-- GALLERY -->
 
-    window.location.hash =
-        `product=${encodeURIComponent(product.code)}`;
+                <div class="product-gallery">
 
-    window.currentProductImages =
-        images;
+                    <div class="main-image-wrap">
 
-    window.currentProductImageIndex =
-        0;
+                        <img
+                            id="main-product-image"
+                            class="main-product-image"
+                            src="${images[0]}"
+                            alt="${product.code}"
+                            onclick="openImageViewer(0)"
+                            onerror="handleMissingMainImage(this)">
 
-    window.currentProductCode =
-        product.code;
+                        <button
+                            type="button"
+                            class="gallery-prev"
+                            onclick="changeMainImage(-1)">
+                            ‹
+                        </button>
 
+                        <button
+                            type="button"
+                            class="gallery-next"
+                            onclick="changeMainImage(1)">
+                            ›
+                        </button>
 
-    productSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-}
-
-
-/* =========================================================
-   7. CHỌN ẢNH SẢN PHẨM
-   ========================================================= */
-
-function selectProductImage(index) {
-
-    if (
-        !window.currentProductImages ||
-        !window.currentProductImages[index]
-    ) {
-        return;
-    }
-
-    const mainImage =
-        document.querySelector(
-            "#main-product-image"
-        );
-
-    if (!mainImage) {
-        return;
-    }
-
-    window.currentProductImageIndex =
-        index;
-
-    mainImage.src =
-        window.currentProductImages[index];
+                    </div>
 
 
-    document
-        .querySelectorAll(".product-thumbnail")
-        .forEach(
-            (thumbnail, thumbnailIndex) => {
+                    <div class="product-thumbnails">
 
-                thumbnail.classList.toggle(
-                    "active",
-                    thumbnailIndex === index
-                );
+                        ${images.map((image, index) => `
 
-            }
-        );
-}
+                            <button
+                                type="button"
+                                class="product-thumbnail ${index === 0 ? "active" : ""}"
+                                onclick="selectProductImage(${index})">
 
+                                <img
+                                    src="${image}"
+                                    alt="${product.code} - ${index + 1}"
+                                    onerror="this.parentElement.style.display='none'">
 
-/* =========================================================
-   8. ẢNH TRƯỚC / ẢNH SAU
-   ========================================================= */
+                            </button>
 
-function changeMainImage(direction) {
+                        `).join("")}
 
-    if (
-        !window.currentProductImages ||
-        window.currentProductImages.length === 0
-    ) {
-        return;
-    }
+                    </div>
 
-    let newIndex =
-        window.currentProductImageIndex + direction;
-
-    if (
-        newIndex <
-        0
-    ) {
-
-        newIndex =
-            window.currentProductImages.length - 1;
-
-    }
-
-    if (
-        newIndex >=
-        window.currentProductImages.length
-    ) {
-
-        newIndex = 0;
-
-    }
-
-    selectProductImage(newIndex);
-}
+                </div>
 
 
-/* =========================================================
-   9. MỞ ẢNH PHÓNG TO
-   ========================================================= */
+                <!-- PRODUCT INFORMATION -->
 
-function openImageViewer(index) {
+                <div class="detail-info">
 
-    if (
-        !window.currentProductImages ||
-        !window.currentProductImages[index]
-    ) {
-        return;
-    }
+                    <span class="section-label">
+                        PRODUCT
+                    </span>
 
-    let viewer =
-        document.querySelector("#image-viewer");
+                    <h1>
+                        ${product.name}
+                    </h1>
 
-    if (!viewer) {
+                    <div class="detail-code">
+                        Mã sản phẩm:
+                        <strong>${product.code}</strong>
+                    </div>
 
-        viewer =
-            document.createElement("div");
+                    <div class="detail-description">
+                        ${product.description}
+                    </div>
 
-        viewer.id =
-            "image-viewer";
 
-        viewer.innerHTML = `
+                    <h3 class="spec-title">
+                        Thông số kỹ thuật
+                    </h3>
 
-            <div class="image-viewer-overlay">
+                    <table class="spec-table">
 
-                <button
-                    type="button"
-                    class="image-viewer-close"
-                    aria-label="Đóng"
-                >
-                    ×
-                </button>
+                        <tbody>
 
-                <button
-                    type="button"
-                    class="image-viewer-prev"
-                    aria-label="Ảnh trước"
-                >
-                    ‹
-                </button>
+                            ${specifications.map(
+                                ([key, value]) => `
+                                    <tr>
+                                        <th>${key}</th>
+                                        <td>${value}</td>
+                                    </tr>
+                                `
+                            ).join("")}
 
-                <img
-                    id="image-viewer-img"
-                    src=""
-                    alt="Ảnh sản phẩm"
-                >
+                        </tbody>
 
-                <button
-                    type="button"
-                    class="image-viewer-next"
-                    aria-label="Ảnh tiếp theo"
-                >
-                    ›
-                </button>
+                    </table>
 
-                <div
-                    class="image-viewer-counter"
-                    id="image-viewer-counter"
-                >
+
+                    <div class="detail-contact">
+
+                        <a
+                            class="detail-zalo"
+                            href="https://zalo.me/0358854410"
+                            target="_blank"
+                            rel="noopener">
+                            💬 Liên hệ Zalo
+                        </a>
+
+                        <button
+                            type="button"
+                            class="detail-request"
+                            onclick="fillContact('${product.code}')">
+                            Yêu cầu báo giá
+                        </button>
+
+                    </div>
+
                 </div>
 
             </div>
 
-        `;
+        </div>
 
-        document.body.appendChild(viewer);
-
-
-        const overlay =
-            viewer.querySelector(
-                ".image-viewer-overlay"
-            );
-
-        const closeButton =
-            viewer.querySelector(
-                ".image-viewer-close"
-            );
-
-        const prevButton =
-            viewer.querySelector(
-                ".image-viewer-prev"
-            );
-
-        const nextButton =
-            viewer.querySelector(
-                ".image-viewer-next"
-            );
+    `;
 
 
-        if (closeButton) {
+    if (updateHash) {
 
-            closeButton.addEventListener(
-                "click",
-                closeImageViewer
-            );
-
-        }
-
-
-        if (prevButton) {
-
-            prevButton.addEventListener(
-                "click",
-                function(event) {
-
-                    event.stopPropagation();
-
-                    changeViewerImage(-1);
-
-                }
-            );
-
-        }
-
-
-        if (nextButton) {
-
-            nextButton.addEventListener(
-                "click",
-                function(event) {
-
-                    event.stopPropagation();
-
-                    changeViewerImage(1);
-
-                }
-            );
-
-        }
-
-
-        if (overlay) {
-
-            overlay.addEventListener(
-                "click",
-                function(event) {
-
-                    if (
-                        event.target === overlay
-                    ) {
-
-                        closeImageViewer();
-
-                    }
-
-                }
-            );
-
-        }
+        history.replaceState(
+            null,
+            "",
+            `#product=${encodeURIComponent(product.code)}`
+        );
 
     }
 
-    window.viewerImageIndex =
+
+    document.getElementById("products").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================================
+   IMAGE FUNCTIONS
+========================================================= */
+
+function selectProductImage(index) {
+
+    if (!currentProduct) return;
+
+    const images =
+        getProductImages(currentProduct.code);
+
+    currentImageIndex =
+        index;
+
+    const main =
+        document.getElementById("main-product-image");
+
+    if (main) {
+
+        main.src =
+            images[index];
+
+    }
+
+
+    document
+        .querySelectorAll(".product-thumbnail")
+        .forEach((thumb, i) => {
+
+            thumb.classList.toggle(
+                "active",
+                i === index
+            );
+
+        });
+
+}
+
+
+function changeMainImage(direction) {
+
+    if (!currentProduct) return;
+
+    const images =
+        getProductImages(currentProduct.code);
+
+    let next =
+        currentImageIndex + direction;
+
+    if (next < 0) {
+        next = images.length - 1;
+    }
+
+    if (next >= images.length) {
+        next = 0;
+    }
+
+    selectProductImage(next);
+
+}
+
+
+/* =========================================================
+   IMAGE VIEWER
+========================================================= */
+
+function openImageViewer(index) {
+
+    if (!currentProduct) return;
+
+    viewerImages =
+        getProductImages(currentProduct.code);
+
+    currentImageIndex =
         index;
 
     updateImageViewer();
 
-    viewer.style.display =
-        "flex";
+    document
+        .getElementById("image-viewer")
+        .classList.add("show");
 
     document.body.style.overflow =
         "hidden";
+
 }
 
-
-/* =========================================================
-   10. CẬP NHẬT ẢNH PHÓNG TO
-   ========================================================= */
 
 function updateImageViewer() {
 
-    const viewer =
-        document.querySelector(
-            "#image-viewer"
-        );
-
-    if (!viewer) {
-        return;
-    }
-
     const image =
-        viewer.querySelector(
-            "#image-viewer-img"
-        );
+        document.getElementById("viewer-image");
 
     const counter =
-        viewer.querySelector(
-            "#image-viewer-counter"
-        );
+        document.getElementById("image-viewer-counter");
 
-    if (
-        !image ||
-        !window.currentProductImages
-    ) {
-        return;
-    }
+    if (!image) return;
 
     image.src =
-        window.currentProductImages[
-            window.viewerImageIndex
-        ];
+        viewerImages[currentImageIndex];
 
-    if (counter) {
+    counter.textContent =
+        `${currentImageIndex + 1} / ${viewerImages.length}`;
 
-        counter.textContent =
-            `${window.viewerImageIndex + 1} / ${
-                window.currentProductImages.length
-            }`;
-
-    }
 }
 
-
-/* =========================================================
-   11. CHUYỂN ẢNH TRONG LIGHTBOX
-   ========================================================= */
 
 function changeViewerImage(direction) {
 
+    if (!viewerImages.length) return;
+
+    currentImageIndex += direction;
+
+    if (currentImageIndex < 0) {
+        currentImageIndex =
+            viewerImages.length - 1;
+    }
+
+    if (currentImageIndex >= viewerImages.length) {
+        currentImageIndex = 0;
+    }
+
+    updateImageViewer();
+
+}
+
+
+function closeImageViewer(event) {
+
     if (
-        !window.currentProductImages ||
-        window.currentProductImages.length === 0
+        event &&
+        event.target &&
+        event.target.id !== "image-viewer"
     ) {
         return;
     }
 
-    let index =
-        window.viewerImageIndex + direction;
-
-    if (index < 0) {
-
-        index =
-            window.currentProductImages.length - 1;
-
-    }
-
-    if (
-        index >=
-        window.currentProductImages.length
-    ) {
-
-        index = 0;
-
-    }
-
-    window.viewerImageIndex =
-        index;
-
-    updateImageViewer();
-}
-
-
-/* =========================================================
-   12. ĐÓNG LIGHTBOX
-   ========================================================= */
-
-function closeImageViewer() {
-
-    const viewer =
-        document.querySelector(
-            "#image-viewer"
-        );
-
-    if (viewer) {
-
-        viewer.style.display =
-            "none";
-
-    }
+    document
+        .getElementById("image-viewer")
+        .classList.remove("show");
 
     document.body.style.overflow =
         "";
+
 }
 
 
 /* =========================================================
-   13. QUAY LẠI DANH MỤC
-   ========================================================= */
+   BACK
+========================================================= */
 
-function goBackToCategory(category) {
+function goBackToCategory() {
 
-    window.location.hash =
-        `category=${encodeURIComponent(category)}`;
+    if (currentCategory) {
 
-    showProducts(category);
+        showProducts(
+            currentCategory
+        );
+
+    } else {
+
+        showCategories();
+
+    }
+
 }
 
 
 /* =========================================================
-   14. HIỂN THỊ LẠI DANH MỤC
-   ========================================================= */
-
-function showCategories() {
-
-    const categoryGrid =
-        document.querySelector(
-            "#category-grid"
-        );
-
-    const productSection =
-        document.querySelector(
-            "#product-list-section"
-        );
-
-    if (!categoryGrid) {
-        return;
-    }
-
-    categoryGrid.style.display =
-        "grid";
-
-    if (productSection) {
-
-        productSection.style.display =
-            "none";
-
-    }
-
-    window.location.hash = "";
-
-    const productTop =
-        document.querySelector(
-            "#san-pham"
-        );
-
-    if (productTop) {
-
-        productTop.scrollIntoView({
-            behavior: "smooth"
-        });
-
-    }
-}
-
-
-/* =========================================================
-   15. ĐIỀN SẢN PHẨM VÀO FORM LIÊN HỆ
-   ========================================================= */
+   CONTACT
+========================================================= */
 
 function fillContact(code) {
 
-    const message =
-        document.querySelector(
-            "#message"
+    const product =
+        products.find(
+            item => item.code === code
         );
 
-    if (!message) {
-        return;
+    if (!product) return;
+
+
+    const message =
+        document.getElementById("message");
+
+    if (message) {
+
+        message.value =
+            `Tôi muốn hỏi giá sản phẩm ${product.code} - ${product.name}.\n\nSố lượng: `;
+
     }
 
-    message.value =
-        `Tôi muốn hỏi giá sản phẩm: ${code}`;
 
-    message.focus();
-
-    const contact =
-        document.querySelector(
-            "#lien-he"
-        );
-
-    if (contact) {
-
-        contact.scrollIntoView({
+    document
+        .getElementById("contact")
+        .scrollIntoView({
             behavior: "smooth"
         });
 
-    }
+
+    setTimeout(() => {
+
+        message.focus();
+
+    }, 500);
+
 }
 
 
 /* =========================================================
-   16. GỬI YÊU CẦU QUA ZALO
-   ========================================================= */
+   SEND MESSAGE
+========================================================= */
 
 function sendMessage(event) {
 
     event.preventDefault();
 
-    const nameElement =
-        document.querySelector("#name");
-
-    const phoneElement =
-        document.querySelector("#phone");
-
-    const messageElement =
-        document.querySelector("#message");
-
-    if (
-        !nameElement ||
-        !phoneElement ||
-        !messageElement
-    ) {
-
-        alert(
-            "Không tìm thấy biểu mẫu liên hệ."
-        );
-
-        return;
-    }
-
     const name =
-        nameElement.value.trim();
+        document.getElementById("name").value.trim();
 
     const phone =
-        phoneElement.value.trim();
+        document.getElementById("phone").value.trim();
 
     const message =
-        messageElement.value.trim();
+        document.getElementById("message").value.trim();
 
-    if (
-        !name ||
-        !phone ||
-        !message
-    ) {
+
+    if (!name || !phone || !message) {
 
         alert(
             "Vui lòng nhập đầy đủ thông tin."
         );
 
-        return;
-    }
-
-    const textMessage =
-`Xin chào, tôi là ${name}.
-Số điện thoại: ${phone}.
-Nội dung cần tư vấn: ${message}`;
-
-
-    if (
-        navigator.clipboard &&
-        window.isSecureContext
-    ) {
-
-        navigator.clipboard
-            .writeText(textMessage)
-            .catch(() => {});
+        return false;
 
     }
+
+
+    const zaloMessage =
+        `Xin chào, tôi là ${name}.\n\n` +
+        `Số điện thoại: ${phone}\n\n` +
+        `Nội dung:\n${message}`;
 
 
     const zaloUrl =
-        "https://zalo.me/0358854410";
-
-    window.open(
-        zaloUrl,
-        "_blank",
-        "noopener,noreferrer"
-    );
+        `https://zalo.me/0358854410`;
 
 
     alert(
-        "Nội dung yêu cầu đã được sao chép.\n\n" +
-        "Anh hãy dán nội dung vào Zalo và gửi."
+        "Thông tin đã được ghi nhận. Vui lòng liên hệ Zalo để gửi yêu cầu."
     );
+
+
+    window.open(
+        zaloUrl,
+        "_blank"
+    );
+
+
+    return false;
+
 }
 
 
 /* =========================================================
-   17. MENU MOBILE
-   ========================================================= */
+   SCROLL
+========================================================= */
 
-function setupMobileMenu() {
+function scrollToProducts() {
 
-    const toggle =
-        document.querySelector(
-            ".menu-toggle"
-        );
+    document
+        .getElementById("products")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+    closeMobileMenu();
+
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function toggleMobileMenu() {
 
     const nav =
-        document.querySelector(
-            "#main-nav"
-        );
+        document.getElementById("main-nav");
 
-    if (!toggle || !nav) {
-        return;
+    nav.classList.toggle("show");
+
+}
+
+
+function closeMobileMenu() {
+
+    const nav =
+        document.getElementById("main-nav");
+
+    if (nav) {
+
+        nav.classList.remove("show");
+
     }
 
-    toggle.addEventListener(
-        "click",
-        function() {
-
-            nav.style.display =
-                nav.style.display === "flex"
-                    ? "none"
-                    : "flex";
-
-        }
-    );
-
-
-    const navLinks =
-        nav.querySelectorAll("a");
-
-
-    navLinks.forEach(
-        link => {
-
-            link.addEventListener(
-                "click",
-                function() {
-
-                    if (
-                        window.innerWidth <= 800
-                    ) {
-
-                        nav.style.display =
-                            "none";
-
-                    }
-
-                }
-            );
-
-        }
-    );
 }
 
 
 /* =========================================================
-   18. ĐỌC URL HASH
-   ========================================================= */
+   KEYBOARD
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        const viewer =
+            document.getElementById("image-viewer");
+
+        if (
+            viewer &&
+            viewer.classList.contains("show")
+        ) {
+
+            if (event.key === "Escape") {
+
+                closeImageViewer();
+
+            }
+
+            if (event.key === "ArrowLeft") {
+
+                changeViewerImage(-1);
+
+            }
+
+            if (event.key === "ArrowRight") {
+
+                changeViewerImage(1);
+
+            }
+
+        }
+
+        if (
+            event.key === "/" &&
+            document.activeElement.tagName !== "INPUT" &&
+            document.activeElement.tagName !== "TEXTAREA"
+        ) {
+
+            event.preventDefault();
+
+            const search =
+                document.getElementById("product-search");
+
+            if (search) {
+
+                search.focus();
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   HASH / F5
+========================================================= */
 
 function loadFromHash() {
 
@@ -1780,34 +1570,20 @@ function loadFromHash() {
         window.location.hash;
 
 
-    /* -----------------------------------------
-       KHÔNG CÓ HASH
-       → TRANG CHỦ / DANH MỤC
-       ----------------------------------------- */
-
     if (!hash) {
 
-        showCategories();
+        showHome();
 
         return;
+
     }
 
 
-    /* -----------------------------------------
-       PRODUCT
-       Ví dụ:
-       #product=NH-2020
-       ----------------------------------------- */
-
-    if (
-        hash.startsWith("#product=")
-    ) {
+    if (hash.startsWith("#product=")) {
 
         const code =
             decodeURIComponent(
-                hash.substring(
-                    "#product=".length
-                )
+                hash.substring(9)
             );
 
         const product =
@@ -1818,144 +1594,127 @@ function loadFromHash() {
         if (product) {
 
             showProductDetail(
-                product.code
+                code,
+                false
             );
 
             return;
+
         }
 
     }
 
 
-    /* -----------------------------------------
-       CATEGORY
-       Ví dụ:
-       #category=Nhôm%20định%20hình
-       ----------------------------------------- */
-
-    if (
-        hash.startsWith("#category=")
-    ) {
+    if (hash.startsWith("#category=")) {
 
         const category =
             decodeURIComponent(
-                hash.substring(
-                    "#category=".length
-                )
+                hash.substring(10)
             );
 
         const exists =
             products.some(
-                product =>
-                    product.category === category
+                item => item.category === category
             );
 
         if (exists) {
 
-            showProducts(category);
+            showProducts(
+                category,
+                false
+            );
 
             return;
+
         }
 
     }
 
 
-    /* -----------------------------------------
-       HASH CŨ / KHÔNG HỢP LỆ
-       ----------------------------------------- */
+    showHome();
 
-    showCategories();
 }
 
 
 /* =========================================================
-   19. XỬ LÝ PHÍM ESC
-   ========================================================= */
+   UTILITIES
+========================================================= */
 
-function setupKeyboardControls() {
+function normalizeText(text) {
 
-    document.addEventListener(
-        "keydown",
-        function(event) {
+    return String(text || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d");
 
-            const viewer =
-                document.querySelector(
-                    "#image-viewer"
-                );
-
-
-            /* ESC */
-
-            if (
-                event.key === "Escape" &&
-                viewer &&
-                viewer.style.display === "flex"
-            ) {
-
-                closeImageViewer();
-
-                return;
-            }
+}
 
 
-            /* ẢNH TRƯỚC */
+function escapeHtml(text) {
 
-            if (
-                viewer &&
-                viewer.style.display === "flex" &&
-                event.key === "ArrowLeft"
-            ) {
+    return String(text || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
-                changeViewerImage(-1);
-
-                return;
-            }
+}
 
 
-            /* ẢNH SAU */
+function escapeAttribute(text) {
 
-            if (
-                viewer &&
-                viewer.style.display === "flex" &&
-                event.key === "ArrowRight"
-            ) {
+    return String(text || "")
+        .replace(/'/g, "\\'");
+}
 
-                changeViewerImage(1);
 
-            }
+function handleMissingMainImage(image) {
+
+    image.style.display =
+        "none";
+
+}
+
+
+/* =========================================================
+   CLOSE SEARCH WHEN CLICKING OUTSIDE
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const searchArea =
+            document.querySelector(".search-container");
+
+        const results =
+            document.getElementById("search-results");
+
+        if (
+            searchArea &&
+            results &&
+            !searchArea.contains(event.target)
+        ) {
+
+            results.innerHTML = "";
 
         }
-    );
-}
-
-
-/* =========================================================
-   20. XỬ LÝ NÚT BACK / FORWARD TRÌNH DUYỆT
-   ========================================================= */
-
-window.addEventListener(
-    "hashchange",
-    function() {
-
-        loadFromHash();
 
     }
 );
 
 
 /* =========================================================
-   21. KHỞI ĐỘNG WEBSITE
-   ========================================================= */
+   START
+========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     function() {
 
         createCategories();
-
-        setupMobileMenu();
-
-        setupKeyboardControls();
 
         loadFromHash();
 
