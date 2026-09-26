@@ -1,141 +1,113 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Linh Kiện Công Nghiệp | Industrial Parts</title>
 
-    <meta
-        name="description"
-        content="Linh kiện công nghiệp - Nhôm định hình, bản lề, bánh xe, chân tăng chỉnh, nam châm, vòng bi, bu lông và ốc vít."
-    >
+    <meta name="description"
+          content="Linh kiện cơ khí và công nghiệp - nhôm định hình, bánh xe, bản lề, vòng bi, chân tăng chỉnh, nam châm, bu lông ốc vít.">
 
-    <title>
-        Linh Kiện Công Nghiệp
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     HEADER
-     ===================================================== -->
+<!-- ================= HEADER ================= -->
 
 <header class="site-header">
 
-    <div class="container header-inner">
+    <div class="header-inner">
 
-        <a
-            href="#"
-            class="logo"
-            onclick="showCategories(); return false;"
-        >
-            <strong>
-                LINH KIỆN
-            </strong>
-
-            <span>
-                CÔNG NGHIỆP
-            </span>
+        <a href="#" class="logo" onclick="showHome(); return false;">
+            <span class="logo-main">INDUSTRIAL</span>
+            <span class="logo-sub">PARTS</span>
         </a>
 
-
-        <button
-            type="button"
-            class="menu-toggle"
-            aria-label="Mở menu"
-        >
+        <button class="mobile-menu-btn"
+                onclick="toggleMobileMenu()"
+                aria-label="Mở menu">
             ☰
         </button>
 
+        <nav class="main-nav" id="main-nav">
 
-        <nav
-            id="main-nav"
-            class="main-nav"
-        >
-
-            <a href="#">
+            <a href="#" onclick="showHome(); return false;">
                 Trang chủ
             </a>
 
-            <a href="#gioi-thieu">
-                Giới thiệu
-            </a>
-
-            <a href="#san-pham">
+            <a href="#products"
+               onclick="scrollToProducts(); closeMobileMenu();">
                 Sản phẩm
             </a>
 
-            <a href="#dich-vu">
+            <a href="#services"
+               onclick="closeMobileMenu();">
                 Dịch vụ
             </a>
 
-            <a href="#lien-he">
+            <a href="#about"
+               onclick="closeMobileMenu();">
+                Giới thiệu
+            </a>
+
+            <a href="#contact"
+               onclick="closeMobileMenu();">
                 Liên hệ
             </a>
 
         </nav>
+
+        <a class="header-zalo"
+           href="https://zalo.me/0358854410"
+           target="_blank"
+           rel="noopener">
+            Zalo
+        </a>
 
     </div>
 
 </header>
 
 
+<!-- ================= SEARCH BAR ================= -->
 
-<!-- =====================================================
-     HERO
-     ===================================================== -->
+<section class="search-area">
 
-<section class="hero">
+    <div class="search-container">
 
-    <div class="container hero-content">
-
-        <div class="hero-text">
-
-            <p class="hero-subtitle">
-                GIẢI PHÁP LINH KIỆN CÔNG NGHIỆP
-            </p>
-
-            <h1>
-                LINH KIỆN
-                <br>
-                CÔNG NGHIỆP
-            </h1>
-
+        <div class="search-title">
+            <h1>Linh kiện cơ khí & công nghiệp</h1>
             <p>
-                Cung cấp linh kiện, phụ kiện và giải pháp
-                phục vụ sản xuất, cơ khí và tự động hóa.
+                Tra cứu nhanh mã hàng, tên sản phẩm và thông số kỹ thuật
             </p>
+        </div>
 
-            <div class="hero-buttons">
+        <div class="search-box">
 
-                <a
-                    href="#san-pham"
-                    class="btn primary"
-                >
-                    Xem sản phẩm
-                </a>
+            <span class="search-icon">⌕</span>
 
-                <a
-                    href="#lien-he"
-                    class="btn secondary"
-                >
-                    Liên hệ ngay
-                </a>
+            <input
+                type="text"
+                id="product-search"
+                placeholder="Tìm mã sản phẩm, tên sản phẩm, quy cách..."
+                autocomplete="off"
+                oninput="searchProducts(this.value)"
+            >
 
-            </div>
+            <button
+                type="button"
+                class="search-clear"
+                id="search-clear"
+                onclick="clearSearch()">
+                ×
+            </button>
 
+        </div>
+
+        <div id="search-results"
+             class="search-results">
         </div>
 
     </div>
@@ -143,110 +115,67 @@
 </section>
 
 
+<!-- ================= MAIN ================= -->
 
-<!-- =====================================================
-     GIỚI THIỆU
-     ===================================================== -->
-
-<section
-    id="gioi-thieu"
-    class="section"
->
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span>
-                GIỚI THIỆU
-            </span>
-
-            <h2>
-                Linh kiện cho sản xuất công nghiệp
-            </h2>
-
-        </div>
+<main>
 
 
-        <div class="about-content">
+<!-- ================= HOME ================= -->
 
-            <div class="about-text">
+<section id="home" class="home-section">
+
+    <div class="home-container">
+
+        <div class="home-intro">
+
+            <div>
+                <span class="section-label">
+                    INDUSTRIAL COMPONENTS
+                </span>
+
+                <h2>
+                    Linh kiện công nghiệp<br>
+                    cho máy móc & tự động hóa
+                </h2>
 
                 <p>
-                    Chúng tôi cung cấp các loại linh kiện và
-                    phụ kiện phục vụ ngành cơ khí, chế tạo máy,
-                    tự động hóa và sản xuất công nghiệp.
+                    Cung cấp các loại linh kiện cơ khí,
+                    nhôm định hình và phụ kiện phục vụ
+                    chế tạo máy, tự động hóa và sản xuất công nghiệp.
                 </p>
 
-                <p>
-                    Danh mục sản phẩm bao gồm nhôm định hình,
-                    bản lề, bánh xe, chân tăng chỉnh, nam châm,
-                    vòng bi, bu lông và nhiều loại phụ kiện
-                    công nghiệp khác.
-                </p>
+                <div class="home-buttons">
 
-                <p>
-                    Sản phẩm được lựa chọn theo nhu cầu thực tế
-                    của khách hàng và có thể tư vấn quy cách,
-                    kích thước cũng như ứng dụng phù hợp.
-                </p>
+                    <button
+                        class="btn-primary"
+                        onclick="scrollToProducts()">
+                        Xem sản phẩm
+                    </button>
 
+                    <a
+                        class="btn-secondary"
+                        href="#contact">
+                        Yêu cầu báo giá
+                    </a>
+
+                </div>
             </div>
 
+            <div class="home-info">
 
-            <div class="about-features">
-
-                <div class="feature-box">
-
-                    <strong>
-                        01
-                    </strong>
-
-                    <h3>
-                        Đa dạng sản phẩm
-                    </h3>
-
-                    <p>
-                        Nhiều nhóm linh kiện phục vụ cơ khí
-                        và tự động hóa.
-                    </p>
-
+                <div class="info-item">
+                    <strong>01</strong>
+                    <span>Tra cứu mã hàng nhanh</span>
                 </div>
 
-
-                <div class="feature-box">
-
-                    <strong>
-                        02
-                    </strong>
-
-                    <h3>
-                        Tư vấn kỹ thuật
-                    </h3>
-
-                    <p>
-                        Hỗ trợ lựa chọn sản phẩm theo nhu cầu
-                        sử dụng thực tế.
-                    </p>
-
+                <div class="info-item">
+                    <strong>02</strong>
+                    <span>Thông số kỹ thuật rõ ràng</span>
                 </div>
 
-
-                <div class="feature-box">
-
-                    <strong>
-                        03
-                    </strong>
-
-                    <h3>
-                        Báo giá nhanh
-                    </h3>
-
-                    <p>
-                        Tiếp nhận yêu cầu và tư vấn báo giá
-                        theo sản phẩm.
-                    </p>
-
+                <div class="info-item">
+                    <strong>03</strong>
+                    <span>Hỗ trợ tư vấn & báo giá</span>
                 </div>
 
             </div>
@@ -258,85 +187,101 @@
 </section>
 
 
+<!-- ================= PRODUCTS ================= -->
 
-<!-- =====================================================
-     SẢN PHẨM
-     ===================================================== -->
+<section id="products" class="products-section">
 
-<section
-    id="san-pham"
-    class="section products-section"
->
-
-    <div class="container">
+    <div class="section-container">
 
         <div class="section-heading">
 
-            <span>
-                DANH MỤC SẢN PHẨM
+            <div>
+                <span class="section-label">
+                    PRODUCT CATALOG
+                </span>
+
+                <h2>
+                    Danh mục sản phẩm
+                </h2>
+            </div>
+
+            <span id="product-count"
+                  class="product-count">
             </span>
 
-            <h2>
-                Linh kiện công nghiệp
-            </h2>
-
-            <p>
-                Lựa chọn nhóm sản phẩm để xem các sản phẩm
-                đang cung cấp.
-            </p>
-
         </div>
 
 
-        <!-- =================================================
-             DANH MỤC ĐƯỢC TẠO BẰNG JAVASCRIPT
-             ================================================= -->
+        <!-- CATEGORY -->
 
-        <div
-            id="category-grid"
-            class="product-grid"
-        >
+        <div id="category-grid"
+             class="category-grid">
         </div>
 
 
+        <!-- PRODUCT LIST -->
 
-        <!-- =================================================
-             DANH SÁCH / CHI TIẾT SẢN PHẨM
-             ================================================= -->
+        <section id="product-list-section"
+                 class="product-list-section"
+                 style="display:none;">
 
-        <section
-            id="product-list-section"
-            style="display: none;"
-        >
-
-            <div class="product-section-header">
+            <div class="product-list-header">
 
                 <button
                     type="button"
-                    class="back-category-btn"
-                    onclick="showCategories()"
-                >
-                    ← Tất cả danh mục
+                    class="back-btn"
+                    onclick="showCategories()">
+                    ← Danh mục
                 </button>
 
-                <h2
-                    id="product-category-title"
-                >
-                </h2>
+                <div>
 
-                <p
-                    id="product-category-description"
-                >
-                </p>
+                    <span class="section-label">
+                        PRODUCT LIST
+                    </span>
+
+                    <h2 id="product-category-title"></h2>
+
+                    <p id="product-category-description"></p>
+
+                </div>
 
             </div>
 
+            <div class="catalog-toolbar">
 
-            <div
-                id="product-list"
-                class="product-grid"
-            >
+                <span id="category-product-count"></span>
+
+                <input
+                    type="text"
+                    id="category-search"
+                    placeholder="Tìm trong danh mục..."
+                    oninput="filterCategoryProducts(this.value)"
+                >
+
             </div>
+
+            <div id="product-list"
+                 class="product-grid">
+            </div>
+
+        </section>
+
+
+        <!-- PRODUCT DETAIL -->
+
+        <section id="product-detail-section"
+                 class="product-detail-section"
+                 style="display:none;">
+
+            <button
+                type="button"
+                class="back-btn detail-back"
+                onclick="goBackToCategory()">
+                ← Quay lại danh mục
+            </button>
+
+            <div id="product-detail"></div>
 
         </section>
 
@@ -345,88 +290,93 @@
 </section>
 
 
+<!-- ================= SERVICES ================= -->
 
-<!-- =====================================================
-     DỊCH VỤ
-     ===================================================== -->
+<section id="services" class="services-section">
 
-<section
-    id="dich-vu"
-    class="section services-section"
->
-
-    <div class="container">
+    <div class="section-container">
 
         <div class="section-heading">
 
-            <span>
-                DỊCH VỤ
-            </span>
+            <div>
 
-            <h2>
-                Hỗ trợ cho nhu cầu công nghiệp
-            </h2>
+                <span class="section-label">
+                    SERVICES
+                </span>
+
+                <h2>
+                    Dịch vụ
+                </h2>
+
+            </div>
 
         </div>
 
 
-        <div class="services-grid">
+        <div class="service-grid">
 
+            <div class="service-card">
 
-            <article class="service-card">
-
-                <div class="service-number">
-                    01
-                </div>
+                <span class="service-number">01</span>
 
                 <h3>
-                    Cung cấp linh kiện
+                    Tư vấn linh kiện
                 </h3>
 
                 <p>
-                    Cung cấp các loại linh kiện và phụ kiện
-                    phục vụ máy móc, thiết bị và dây chuyền
-                    sản xuất.
+                    Hỗ trợ lựa chọn linh kiện phù hợp
+                    với nhu cầu sử dụng và thiết kế máy.
                 </p>
 
-            </article>
+            </div>
 
 
-            <article class="service-card">
+            <div class="service-card">
 
-                <div class="service-number">
-                    02
-                </div>
+                <span class="service-number">02</span>
 
                 <h3>
-                    Tư vấn sản phẩm
+                    Tra cứu sản phẩm
                 </h3>
 
                 <p>
-                    Tư vấn lựa chọn quy cách và loại linh kiện
-                    phù hợp với yêu cầu sử dụng.
+                    Tra cứu nhanh mã hàng, quy cách,
+                    hình ảnh và thông số kỹ thuật.
                 </p>
 
-            </article>
+            </div>
 
 
-            <article class="service-card">
+            <div class="service-card">
 
-                <div class="service-number">
-                    03
-                </div>
+                <span class="service-number">03</span>
+
+                <h3>
+                    Báo giá
+                </h3>
+
+                <p>
+                    Tiếp nhận yêu cầu và hỗ trợ báo giá
+                    theo mã sản phẩm hoặc nhu cầu thực tế.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <span class="service-number">04</span>
 
                 <h3>
                     Hỗ trợ kỹ thuật
                 </h3>
 
                 <p>
-                    Hỗ trợ thông tin kỹ thuật và ứng dụng
-                    sản phẩm trong thực tế.
+                    Hỗ trợ thông tin kỹ thuật trong quá trình
+                    lựa chọn và sử dụng sản phẩm.
                 </p>
 
-            </article>
-
+            </div>
 
         </div>
 
@@ -435,125 +385,119 @@
 </section>
 
 
+<!-- ================= ABOUT ================= -->
 
-<!-- =====================================================
-     LIÊN HỆ
-     ===================================================== -->
+<section id="about" class="about-section">
 
-<section
-    id="lien-he"
-    class="section contact-section"
->
+    <div class="section-container">
 
-    <div class="container">
+        <div class="about-grid">
 
-        <div class="section-heading">
+            <div>
 
-            <span>
-                LIÊN HỆ
-            </span>
+                <span class="section-label">
+                    ABOUT US
+                </span>
 
-            <h2>
-                Gửi yêu cầu báo giá
-            </h2>
+                <h2>
+                    Giải pháp linh kiện<br>
+                    cho sản xuất công nghiệp
+                </h2>
 
-            <p>
-                Điền thông tin bên dưới, chúng tôi sẽ tiếp nhận
-                yêu cầu của anh.
-            </p>
+            </div>
+
+            <div>
+
+                <p>
+                    Industrial Parts cung cấp và giới thiệu các sản phẩm
+                    linh kiện cơ khí, phụ kiện máy và thiết bị phục vụ
+                    sản xuất, chế tạo máy và tự động hóa.
+                </p>
+
+                <p>
+                    Website được xây dựng nhằm giúp khách hàng dễ dàng
+                    tìm kiếm mã sản phẩm, xem hình ảnh, thông số kỹ thuật
+                    và gửi yêu cầu báo giá.
+                </p>
+
+            </div>
 
         </div>
 
+    </div>
 
-        <div class="contact-content">
+</section>
 
 
-            <!-- THÔNG TIN -->
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" class="contact-section">
+
+    <div class="section-container">
+
+        <div class="contact-grid">
 
             <div class="contact-info">
 
-                <h3>
-                    Thông tin liên hệ
-                </h3>
+                <span class="section-label">
+                    CONTACT
+                </span>
+
+                <h2>
+                    Cần tìm linh kiện?
+                </h2>
 
                 <p>
-                    Vui lòng liên hệ để được tư vấn sản phẩm,
-                    quy cách và báo giá.
+                    Gửi mã sản phẩm hoặc thông tin yêu cầu.
+                    Chúng tôi sẽ hỗ trợ tư vấn và báo giá.
                 </p>
 
-
-                <div class="contact-item">
-
-                    <strong>
-                        Điện thoại
-                    </strong>
-
-                    <a href="tel:0358854410">
-                        0358 854 410
-                    </a>
-
-                </div>
-
-
-                <div class="contact-item">
-
-                    <strong>
-                        Zalo
-                    </strong>
-
-                    <a
-                        href="https://zalo.me/0358854410"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Nhắn tin Zalo
-                    </a>
-
-                </div>
-
+                <a
+                    class="contact-zalo"
+                    href="https://zalo.me/0358854410"
+                    target="_blank"
+                    rel="noopener">
+                    💬 Liên hệ Zalo
+                </a>
 
             </div>
 
 
-
-            <!-- FORM -->
-
             <form
                 id="contact-form"
                 class="contact-form"
-                onsubmit="sendMessage(event)"
-            >
+                onsubmit="sendMessage(event)">
 
-                <div class="form-group">
+                <div class="form-row">
 
-                    <label for="name">
-                        Họ và tên
-                    </label>
+                    <div class="form-group">
 
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Nhập họ và tên"
-                        required
-                    >
+                        <label for="name">
+                            Họ tên
+                        </label>
 
-                </div>
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Nhập họ tên"
+                            required>
+
+                    </div>
 
 
-                <div class="form-group">
+                    <div class="form-group">
 
-                    <label for="phone">
-                        Số điện thoại
-                    </label>
+                        <label for="phone">
+                            Số điện thoại
+                        </label>
 
-                    <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        placeholder="Nhập số điện thoại"
-                        required
-                    >
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Nhập số điện thoại"
+                            required>
+
+                    </div>
 
                 </div>
 
@@ -566,24 +510,20 @@
 
                     <textarea
                         id="message"
-                        name="message"
-                        rows="6"
-                        placeholder="Nhập sản phẩm hoặc yêu cầu cần tư vấn"
-                        required
-                    ></textarea>
+                        rows="5"
+                        placeholder="Mã sản phẩm / số lượng / yêu cầu..."
+                        required></textarea>
 
                 </div>
 
 
                 <button
                     type="submit"
-                    class="btn primary"
-                >
+                    class="submit-btn">
                     Gửi yêu cầu
                 </button>
 
             </form>
-
 
         </div>
 
@@ -591,36 +531,24 @@
 
 </section>
 
+</main>
 
 
-<!-- =====================================================
-     FOOTER
-     ===================================================== -->
+<!-- ================= FOOTER ================= -->
 
 <footer class="site-footer">
 
-    <div class="container footer-inner">
+    <div class="footer-inner">
 
         <div>
-
-            <strong>
-                LINH KIỆN CÔNG NGHIỆP
-            </strong>
-
+            <strong>INDUSTRIAL PARTS</strong>
             <p>
-                Cung cấp linh kiện và phụ kiện
-                phục vụ sản xuất công nghiệp.
+                Linh kiện cơ khí & công nghiệp
             </p>
-
         </div>
 
-
         <div>
-
-            <p>
-                © 2026 Linh Kiện Công Nghiệp
-            </p>
-
+            © 2026 Industrial Parts
         </div>
 
     </div>
@@ -628,34 +556,64 @@
 </footer>
 
 
-
-<!-- =====================================================
-     NÚT ZALO
-     ===================================================== -->
+<!-- ================= FLOATING ZALO ================= -->
 
 <a
     href="https://zalo.me/0358854410"
-    class="zalo-floating"
+    class="floating-zalo"
     target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Liên hệ Zalo"
->
+    rel="noopener"
+    aria-label="Liên hệ Zalo">
 
-    <span>
-        Zalo
-    </span>
+    <span class="zalo-icon">Z</span>
+    <span class="zalo-text">Zalo</span>
 
 </a>
 
 
+<!-- ================= IMAGE VIEWER ================= -->
 
-<!-- =====================================================
-     JAVASCRIPT
-     ===================================================== -->
+<div
+    id="image-viewer"
+    class="image-viewer"
+    onclick="closeImageViewer(event)">
+
+    <button
+        type="button"
+        class="image-viewer-close"
+        onclick="closeImageViewer()">
+        ×
+    </button>
+
+    <button
+        type="button"
+        class="image-viewer-prev"
+        onclick="changeViewerImage(-1); event.stopPropagation();">
+        ‹
+    </button>
+
+    <img
+        id="viewer-image"
+        src=""
+        alt="Product image"
+        onclick="event.stopPropagation();">
+
+    <button
+        type="button"
+        class="image-viewer-next"
+        onclick="changeViewerImage(1); event.stopPropagation();">
+        ›
+    </button>
+
+    <div
+        id="image-viewer-counter"
+        class="image-viewer-counter">
+    </div>
+
+</div>
+
 
 <script src="script.js"></script>
 
-
 </body>
-
 </html>
