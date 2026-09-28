@@ -47,17 +47,17 @@
             </a>
 
             <a href="#services" data-i18n="navServices"
-               onclick="closeMobileMenu();">
+               onclick="showServices(); return false;">
                 Dịch vụ
             </a>
 
             <a href="#about" data-i18n="navAbout"
-               onclick="closeMobileMenu();">
+               onclick="showAbout(); return false;">
                 Giới thiệu
             </a>
 
             <a href="#contact" data-i18n="navContact"
-               onclick="closeMobileMenu();">
+               onclick="showContact(); return false;">
                 Liên hệ
             </a>
 
@@ -162,13 +162,13 @@
 
                     <button
                         class="btn-primary"
-                        onclick="scrollToProducts()">
+                        onclick="showCatalog()">
                         <span data-i18n="viewProducts">Xem sản phẩm</span>
                     </button>
 
                     <a
                         class="btn-secondary"
-                        href="#contact">
+                        href="#contact" onclick="showContact(); return false;">
                         <span data-i18n="quote">Yêu cầu báo giá</span>
                     </a>
 
@@ -228,7 +228,7 @@
                 <span class="section-label">QUICK ACCESS</span>
                 <h2>Tra cứu nhanh</h2>
             </div>
-            <button type="button" class="quick-all" onclick="scrollToProducts()">Xem danh mục →</button>
+            <button type="button" class="quick-all" onclick="showCatalog()">Xem danh mục →</button>
         </div>
         <div class="quick-grid">
             <button type="button" class="quick-card" onclick="openCatalogCategory('Nhôm định hình')"><span class="quick-icon">▦</span><span><strong>Nhôm định hình</strong><small>Profile & phụ kiện</small></span></button>
@@ -243,7 +243,9 @@
 
 <!-- ================= PRODUCTS ================= -->
 
-<section id="products" class="products-section">
+<section id="products" class="products-section site-page-section">
+
+    <div class="page-header"><div class="section-container"><div class="page-breadcrumb"><span data-i18n="breadcrumbHome">TRANG CHỦ</span> / <strong data-i18n="breadcrumbProducts">SẢN PHẨM</strong></div><span class="section-label">PRODUCT CATALOG</span><h1 data-i18n="catalogPageTitle">Danh mục linh kiện công nghiệp</h1><p data-i18n="catalogPageSubtitle">Tra cứu sản phẩm theo nhóm, mã hàng và thông số kỹ thuật.</p></div></div>
 
     <div class="section-container">
 
@@ -357,7 +359,9 @@
 
 <!-- ================= SERVICES ================= -->
 
-<section id="services" class="services-section">
+<section id="services" class="services-section site-page-section">
+
+    <div class="page-header"><div class="section-container"><div class="page-breadcrumb"><span data-i18n="breadcrumbHome">TRANG CHỦ</span> / <strong data-i18n="breadcrumbServices">DỊCH VỤ</strong></div><span class="section-label">SERVICES</span><h1 data-i18n="servicesPageTitle">Dịch vụ</h1><p data-i18n="servicesPageSubtitle">Tư vấn, tra cứu, báo giá và hỗ trợ kỹ thuật cho linh kiện công nghiệp.</p></div></div>
 
     <div class="section-container">
 
@@ -452,7 +456,9 @@
 
 <!-- ================= ABOUT ================= -->
 
-<section id="about" class="about-section">
+<section id="about" class="about-section site-page-section">
+
+    <div class="page-header"><div class="section-container"><div class="page-breadcrumb"><span data-i18n="breadcrumbHome">TRANG CHỦ</span> / <strong data-i18n="breadcrumbAbout">GIỚI THIỆU</strong></div><span class="section-label">ABOUT US</span><h1 data-i18n="aboutPageTitle">Giới thiệu INDUSTRIAL PARTS</h1><p data-i18n="aboutPageSubtitle">Linh kiện công nghiệp cho máy móc, chế tạo và tự động hóa.</p></div></div>
 
     <div class="section-container">
 
@@ -473,16 +479,20 @@
 
             <div>
 
-                <p>
-                    Industrial Parts cung cấp và giới thiệu các sản phẩm
-                    linh kiện cơ khí, phụ kiện máy và thiết bị phục vụ
-                    sản xuất, chế tạo máy và tự động hóa.
+                <p data-i18n="aboutIntro">
+                    Industrial Parts cung cấp và giới thiệu các sản phẩm linh kiện cơ khí, phụ kiện máy và thiết bị phục vụ sản xuất, chế tạo máy và tự động hóa.
                 </p>
 
-                <p>
-                    Website được xây dựng nhằm giúp khách hàng dễ dàng
-                    tìm kiếm mã sản phẩm, xem hình ảnh, thông số kỹ thuật
-                    và gửi yêu cầu báo giá.
+                <p data-i18n="aboutDetail">
+                    Website được xây dựng nhằm giúp khách hàng dễ dàng tìm kiếm mã sản phẩm, xem hình ảnh, thông số kỹ thuật và gửi yêu cầu báo giá.
+                </p>
+
+                <p data-i18n="aboutStrength">
+                    Danh mục tập trung vào các nhóm linh kiện thường dùng như nhôm định hình, bánh xe, bản lề, chân tăng chỉnh, nam châm, vòng bi, bu lông và ốc vít.
+                </p>
+
+                <p data-i18n="aboutDirection">
+                    INDUSTRIAL PARTS hướng tới việc xây dựng một thư viện linh kiện công nghiệp trực tuyến, giúp việc tra cứu, lựa chọn và yêu cầu báo giá trở nên nhanh chóng và thuận tiện hơn.
                 </p>
 
             </div>
@@ -496,7 +506,9 @@
 
 <!-- ================= CONTACT ================= -->
 
-<section id="contact" class="contact-section">
+<section id="contact" class="contact-section site-page-section">
+
+    <div class="page-header"><div class="section-container"><div class="page-breadcrumb"><span data-i18n="breadcrumbHome">TRANG CHỦ</span> / <strong data-i18n="breadcrumbContact">LIÊN HỆ</strong></div><span class="section-label">CONTACT</span><h1 data-i18n="contactPageTitle">Liên hệ INDUSTRIAL PARTS</h1><p data-i18n="contactPageSubtitle">Gửi mã sản phẩm hoặc yêu cầu để được hỗ trợ tư vấn và báo giá.</p></div></div>
 
     <div class="section-container">
 

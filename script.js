@@ -1894,149 +1894,181 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 /* =========================================================
-   CATALOG PAGE NAVIGATION - FINAL
-   Home stays as the landing page; Products becomes a focused catalog.
+   PAGE NAVIGATION - HOME / PRODUCTS / SERVICES / ABOUT / CONTACT
+   Keeps the original sections and product functions intact.
 ========================================================= */
 
-const _baseShowHome = showHome;
-const _baseShowCategories = showCategories;
-const _baseShowProducts = showProducts;
-const _baseShowProductDetail = showProductDetail;
-const _baseScrollToProducts = scrollToProducts;
-
-function setPageMode(mode) {
-    document.body.classList.toggle("catalog-mode", mode === "catalog");
-    document.body.classList.toggle("home-mode", mode === "home");
-
-    const sections = {
-        home: document.getElementById("home"),
-        promotions: document.getElementById("promotions"),
-        quick: document.querySelector(".quick-categories"),
-        products: document.getElementById("products"),
-        services: document.getElementById("services"),
-        about: document.getElementById("about"),
-        contact: document.getElementById("contact")
-    };
-
-    if (mode === "catalog") {
-        [sections.home, sections.promotions, sections.quick, sections.services, sections.about, sections.contact].forEach(el => { if (el) el.style.display = "none"; });
-        if (sections.products) sections.products.style.display = "block";
-    } else {
-        [sections.home, sections.promotions, sections.quick, sections.services, sections.about, sections.contact].forEach(el => { if (el) el.style.display = ""; });
-        if (sections.products) sections.products.style.display = "block";
-    }
+function setActiveNav(page) {
+    const map = {home:'navHome', catalog:'navProducts', services:'navServices', about:'navAbout', contact:'navContact'};
+    document.querySelectorAll('#main-nav a').forEach(a => a.classList.remove('nav-active'));
+    const key = map[page];
+    if (!key) return;
+    const a = document.querySelector(`#main-nav a[data-i18n="${key}"]`);
+    if (a) a.classList.add('nav-active');
 }
 
-function updateCatalogHeader(category = "") {
-    const current = document.getElementById("catalog-breadcrumb-current");
-    const title = document.getElementById("catalog-page-title");
-    const subtitle = document.getElementById("catalog-page-subtitle");
-
-    if (!current || !title || !subtitle) return;
-
-    if (category) {
-        current.textContent = translateCategory(category).toUpperCase();
-        title.textContent = translateCategory(category);
-        subtitle.textContent = categoryDescriptions[category] || "";
-    } else {
-        current.textContent = t("productsLabel");
-        title.textContent = t("catalogTitle");
-        subtitle.textContent = currentLanguage === "en"
-            ? "Mechanical and industrial components for machinery, automation and manufacturing."
-            : currentLanguage === "zh"
-                ? "为机械、自动化和工业生产提供机械零部件。"
-                : "Linh kiện cơ khí & công nghiệp cho máy móc, tự động hóa và sản xuất.";
-    }
-}
-
-function openCatalog() {
-    setPageMode("catalog");
-    _baseShowCategories();
-    updateCatalogHeader("");
-    history.replaceState(null, "", window.location.pathname + window.location.search + "#products");
-    closeMobileMenu();
-    const section = document.getElementById("products");
-    if (section) section.scrollIntoView({behavior:"smooth", block:"start"});
-}
-
-function openCatalogCategory(category) {
-    setPageMode("catalog");
-    _baseShowProducts(category, true);
-    updateCatalogHeader(category);
-    closeMobileMenu();
-}
-
-showHome = function() {
-    setPageMode("home");
-    _baseShowHome();
-    updateCatalogHeader("");
-};
-
-showCategories = function() {
-    setPageMode("catalog");
-    _baseShowCategories();
-    updateCatalogHeader("");
-};
-
-showProducts = function(category, updateHash = true) {
-    setPageMode("catalog");
-    _baseShowProducts(category, updateHash);
-    updateCatalogHeader(category);
-};
-
-showProductDetail = function(code, updateHash = true) {
-    setPageMode("catalog");
-    _baseShowProductDetail(code, updateHash);
-    const p = products.find(x => x.code === code);
-    updateCatalogHeader(p ? p.category : "");
-};
-
-scrollToProducts = function() {
-    openCatalog();
-};
-
-// Make every category card a clear catalog entry.
-function enhanceCategoryNavigation() {
-    document.querySelectorAll("#category-grid .category-card").forEach(card => {
-        const onclick = card.getAttribute("onclick") || "";
-        const match = onclick.match(/showProducts\('(.+?)'\)/);
-        if (match) {
-            card.setAttribute("title", `Xem danh mục ${match[1]}`);
-            card.setAttribute("role", "button");
-        }
+function hideSitePages() {
+    ['products','services','about','contact'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) { el.classList.remove('page-active'); el.style.display = 'none'; }
     });
+    const homeParts = ['home','promotions'];
+    homeParts.forEach(id => { const el=document.getElementById(id); if(el) el.style.display='none'; });
+    const quick = document.querySelector('.quick-categories');
+    if (quick) quick.style.display='none';
 }
 
-// Extend the existing category renderer without changing product data.
-const _catalogCreateCategories = createCategories;
-createCategories = function() {
-    _catalogCreateCategories();
-    enhanceCategoryNavigation();
-};
-
-// Ensure translated catalog heading refreshes when language changes.
-const _catalogSetLanguage = setLanguage;
-setLanguage = function(lang) {
-    _catalogSetLanguage(lang);
-    updateCatalogHeader(currentCategory || "");
-};
-
-// Hash routing: #products means catalog, while category/product hashes remain direct.
-const _catalogLoadFromHash = loadFromHash;
-loadFromHash = function() {
-    const hash = window.location.hash;
-    if (hash === "#products") {
-        openCatalog();
-        return;
+function showHome() {
+    currentCategory = '';
+    currentProduct = null;
+    hideSitePages();
+    ['home','promotions'].forEach(id => { const el=document.getElementById(id); if(el) el.style.display='block'; });
+    const quick=document.querySelector('.quick-categories'); if(quick) quick.style.display='block';
+    const productsSection=document.getElementById('products');
+    if(productsSection){
+        const list=document.getElementById('product-list-section');
+        const detail=document.getElementById('product-detail-section');
+        const cats=document.getElementById('category-grid');
+        if(list) list.style.display='none'; if(detail) detail.style.display='none'; if(cats) cats.style.display='grid';
     }
-    _catalogLoadFromHash();
-};
+    clearSearch();
+    history.replaceState(null,'',window.location.pathname+window.location.search);
+    setActiveNav('home');
+    closeMobileMenu();
+    window.scrollTo({top:0,behavior:'smooth'});
+}
 
-// Run after all original startup handlers are registered.
-document.addEventListener("DOMContentLoaded", function() {
-    if (!window.location.hash) {
-        setPageMode("home");
-        updateCatalogHeader("");
+function showCatalog(updateHash=true) {
+    currentProduct=null;
+    hideSitePages();
+    const sec=document.getElementById('products');
+    if(sec){sec.classList.add('page-active');sec.style.display='block';}
+    const list=document.getElementById('product-list-section');
+    const detail=document.getElementById('product-detail-section');
+    const cats=document.getElementById('category-grid');
+    if(list) list.style.display='none';
+    if(detail) detail.style.display='none';
+    if(cats) cats.style.display='grid';
+    currentCategory='';
+    if(updateHash) history.replaceState(null,'','#products');
+    setActiveNav('catalog');
+    closeMobileMenu();
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showServices() {
+    hideSitePages();
+    const el=document.getElementById('services'); if(el){el.classList.add('page-active');el.style.display='block';}
+    setActiveNav('services'); closeMobileMenu(); history.replaceState(null,'','#services'); window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showAbout() {
+    hideSitePages();
+    const el=document.getElementById('about'); if(el){el.classList.add('page-active');el.style.display='block';}
+    setActiveNav('about'); closeMobileMenu(); history.replaceState(null,'','#about'); window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showContact() {
+    hideSitePages();
+    const el=document.getElementById('contact'); if(el){el.classList.add('page-active');el.style.display='block';}
+    setActiveNav('contact'); closeMobileMenu(); history.replaceState(null,'','#contact'); window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showProducts(category, updateHash=true) {
+    currentCategory=category; currentProduct=null;
+    showCatalog(false);
+    const categoryProducts=products.filter(p=>p.category===category);
+    const cats=document.getElementById('category-grid');
+    const list=document.getElementById('product-list-section');
+    const detail=document.getElementById('product-detail-section');
+    if(cats) cats.style.display='none'; if(detail) detail.style.display='none'; if(list) list.style.display='block';
+    const title=document.getElementById('product-category-title'); if(title) title.textContent=category;
+    const desc=document.getElementById('product-category-description'); if(desc) desc.textContent=categoryDescriptions[category]||'';
+    const count=document.getElementById('category-product-count'); if(count) count.textContent=`${categoryProducts.length} sản phẩm`;
+    const search=document.getElementById('category-search'); if(search) search.value='';
+    renderProductList(categoryProducts);
+    if(updateHash) history.replaceState(null,'',`#category=${encodeURIComponent(category)}`);
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showCategories() { showCatalog(true); }
+
+function showProductDetail(code, updateHash=true) {
+    const product=products.find(p=>p.code===code);
+    if(!product) return;
+    showCatalog(false);
+    currentProduct=product; currentCategory=product.category;
+    const cats=document.getElementById('category-grid'), list=document.getElementById('product-list-section'), detail=document.getElementById('product-detail-section');
+    if(cats) cats.style.display='none'; if(list) list.style.display='none'; if(detail) detail.style.display='block';
+    // Run the original detail renderer saved by the enhancement layer when available.
+    if(typeof _originalShowProductDetail === 'function') _originalShowProductDetail(code, false);
+    else {
+        const base=window.__industrialOriginalShowProductDetail;
+        if(typeof base==='function') base(code,false);
     }
-    enhanceCategoryNavigation();
+    // The renderer above may reset display; restore detail page state.
+    if(detail) detail.style.display='block';
+    if(updateHash) history.replaceState(null,'',`#product=${encodeURIComponent(code)}`);
+    setActiveNav('catalog'); closeMobileMenu(); window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function scrollToProducts() { showCatalog(); }
+
+function loadPageFromHash() {
+    const hash=window.location.hash;
+    if(!hash){ showHome(); return; }
+    if(hash==='#products' || hash==='#catalog'){ showCatalog(false); return; }
+    if(hash==='#services'){ showServices(); return; }
+    if(hash==='#about'){ showAbout(); return; }
+    if(hash==='#contact'){ showContact(); return; }
+    const cm=hash.match(/^#category=(.+)$/); if(cm){ showProducts(decodeURIComponent(cm[1]),false); return; }
+    const pm=hash.match(/^#product=(.+)$/); if(pm){ showProductDetail(decodeURIComponent(pm[1]),false); return; }
+    showHome();
+}
+
+window.addEventListener('hashchange', loadPageFromHash);
+
+document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){ loadPageFromHash(); }, 0);
 });
+
+/* Page copy translations */
+Object.assign(translations.vi, {
+    breadcrumbHome:'TRANG CHỦ', breadcrumbProducts:'SẢN PHẨM', breadcrumbServices:'DỊCH VỤ', breadcrumbAbout:'GIỚI THIỆU', breadcrumbContact:'LIÊN HỆ',
+    catalogPageTitle:'Danh mục linh kiện công nghiệp', catalogPageSubtitle:'Tra cứu sản phẩm theo nhóm, mã hàng và thông số kỹ thuật.',
+    servicesPageTitle:'Dịch vụ', servicesPageSubtitle:'Tư vấn, tra cứu, báo giá và hỗ trợ kỹ thuật cho linh kiện công nghiệp.',
+    aboutPageTitle:'Giới thiệu INDUSTRIAL PARTS', aboutPageSubtitle:'Linh kiện công nghiệp cho máy móc, chế tạo và tự động hóa.',
+    contactPageTitle:'Liên hệ INDUSTRIAL PARTS', contactPageSubtitle:'Gửi mã sản phẩm hoặc yêu cầu để được hỗ trợ tư vấn và báo giá.',
+    aboutIntro:'Industrial Parts cung cấp và giới thiệu các sản phẩm linh kiện cơ khí, phụ kiện máy và thiết bị phục vụ sản xuất, chế tạo máy và tự động hóa.',
+    aboutDetail:'Website được xây dựng nhằm giúp khách hàng dễ dàng tìm kiếm mã sản phẩm, xem hình ảnh, thông số kỹ thuật và gửi yêu cầu báo giá.',
+    aboutStrength:'Danh mục tập trung vào các nhóm linh kiện thường dùng như nhôm định hình, bánh xe, bản lề, chân tăng chỉnh, nam châm, vòng bi, bu lông và ốc vít.',
+    aboutDirection:'INDUSTRIAL PARTS hướng tới việc xây dựng một thư viện linh kiện công nghiệp trực tuyến, giúp việc tra cứu, lựa chọn và yêu cầu báo giá trở nên nhanh chóng và thuận tiện hơn.'
+});
+Object.assign(translations.en, {
+    breadcrumbHome:'HOME', breadcrumbProducts:'PRODUCTS', breadcrumbServices:'SERVICES', breadcrumbAbout:'ABOUT', breadcrumbContact:'CONTACT',
+    catalogPageTitle:'Industrial Components Catalog', catalogPageSubtitle:'Browse products by category, product code and technical specifications.',
+    servicesPageTitle:'Services', servicesPageSubtitle:'Component consultation, product search, quotation and technical support.',
+    aboutPageTitle:'About INDUSTRIAL PARTS', aboutPageSubtitle:'Industrial components for machinery, manufacturing and automation.',
+    contactPageTitle:'Contact INDUSTRIAL PARTS', contactPageSubtitle:'Send a product code or request for consultation and quotation support.',
+    aboutIntro:'Industrial Parts supplies and introduces mechanical components, machine accessories and equipment for manufacturing, machine building and automation.',
+    aboutDetail:'The website is designed to help customers quickly search product codes, view images and technical specifications, and submit quotation requests.',
+    aboutStrength:'The catalog focuses on commonly used components such as aluminum profiles, casters, hinges, leveling feet, magnets, bearings, bolts and screws.',
+    aboutDirection:'INDUSTRIAL PARTS aims to build an online industrial component library that makes searching, selecting and requesting quotations faster and more convenient.'
+});
+Object.assign(translations.zh, {
+    breadcrumbHome:'首页', breadcrumbProducts:'产品', breadcrumbServices:'服务', breadcrumbAbout:'关于我们', breadcrumbContact:'联系我们',
+    catalogPageTitle:'工业零部件目录', catalogPageSubtitle:'按分类、产品型号和技术参数快速查找产品。',
+    servicesPageTitle:'服务', servicesPageSubtitle:'提供零部件咨询、产品查询、报价及技术支持。',
+    aboutPageTitle:'关于 INDUSTRIAL PARTS', aboutPageSubtitle:'服务于机械制造、生产和自动化的工业零部件。',
+    contactPageTitle:'联系 INDUSTRIAL PARTS', contactPageSubtitle:'发送产品型号或需求，获取咨询和报价支持。',
+    aboutIntro:'Industrial Parts 提供机械零部件、机器配件及相关工业产品，服务于生产、机械制造和自动化领域。',
+    aboutDetail:'本网站旨在帮助客户快速查询产品型号、查看图片和技术参数，并提交报价需求。',
+    aboutStrength:'产品目录主要包括铝型材、脚轮、铰链、调节脚、磁铁、轴承、螺栓和螺母等常用工业零部件。',
+    aboutDirection:'INDUSTRIAL PARTS 致力于建立在线工业零部件目录，让产品查询、选型和询价更加快速便捷。'
+});
+
+document.addEventListener('DOMContentLoaded', function(){ applyLanguage(); });
+
+// Compatibility for the quick-access cards in the existing homepage markup.
+function openCatalog(){ showCatalog(); }
+function openCatalogCategory(category){ showProducts(category); }
