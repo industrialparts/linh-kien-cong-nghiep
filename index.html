@@ -42,7 +42,7 @@
             </a>
 
             <a href="#products" data-i18n="navProducts"
-               onclick="scrollToProducts(); closeMobileMenu();">
+               onclick="openCatalog(); return false;">
                 Sản phẩm
             </a>
 
@@ -231,11 +231,11 @@
             <button type="button" class="quick-all" onclick="scrollToProducts()">Xem danh mục →</button>
         </div>
         <div class="quick-grid">
-            <button type="button" class="quick-card" onclick="scrollToProducts()"><span class="quick-icon">▦</span><span><strong>Nhôm định hình</strong><small>Profile & phụ kiện</small></span></button>
-            <button type="button" class="quick-card" onclick="scrollToProducts()"><span class="quick-icon">◉</span><span><strong>Bánh xe</strong><small>Casters & bánh xe công nghiệp</small></span></button>
-            <button type="button" class="quick-card" onclick="scrollToProducts()"><span class="quick-icon">◎</span><span><strong>Vòng bi</strong><small>Bearing & phụ kiện</small></span></button>
-            <button type="button" class="quick-card" onclick="scrollToProducts()"><span class="quick-icon">⌗</span><span><strong>Linh kiện cơ khí</strong><small>Bu lông, bản lề, chân tăng...</small></span></button>
-            <button type="button" class="quick-card" onclick="scrollToProducts()"><span class="quick-icon">△</span><span><strong>Dụng cụ cắt</strong><small>Dao phay & phụ kiện</small></span></button>
+            <button type="button" class="quick-card" onclick="openCatalogCategory('Nhôm định hình')"><span class="quick-icon">▦</span><span><strong>Nhôm định hình</strong><small>Profile & phụ kiện</small></span></button>
+            <button type="button" class="quick-card" onclick="openCatalogCategory('Bánh xe')"><span class="quick-icon">◉</span><span><strong>Bánh xe</strong><small>Casters & bánh xe công nghiệp</small></span></button>
+            <button type="button" class="quick-card" onclick="openCatalogCategory('Vòng bi')"><span class="quick-icon">◎</span><span><strong>Vòng bi</strong><small>Bearing & phụ kiện</small></span></button>
+            <button type="button" class="quick-card" onclick="openCatalog()"><span class="quick-icon">⌗</span><span><strong>Linh kiện cơ khí</strong><small>Bu lông, bản lề, chân tăng...</small></span></button>
+            <button type="button" class="quick-card" onclick="openCatalog()"><span class="quick-icon">△</span><span><strong>Dụng cụ cắt</strong><small>Dao phay & phụ kiện</small></span></button>
         </div>
     </div>
 </section>
@@ -246,6 +246,17 @@
 <section id="products" class="products-section">
 
     <div class="section-container">
+
+        <div class="catalog-page-head">
+            <div class="catalog-breadcrumb">
+                <span data-i18n="homeLabel">TRANG CHỦ</span>
+                <span>/</span>
+                <strong id="catalog-breadcrumb-current" data-i18n="productsLabel">SẢN PHẨM</strong>
+            </div>
+            <div class="catalog-page-kicker">PRODUCT CATALOG</div>
+            <h1 id="catalog-page-title">Danh mục sản phẩm</h1>
+            <p id="catalog-page-subtitle">Linh kiện cơ khí & công nghiệp cho máy móc, tự động hóa và sản xuất.</p>
+        </div>
 
         <div class="section-heading">
 

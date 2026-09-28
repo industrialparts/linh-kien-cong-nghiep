@@ -1892,3 +1892,151 @@ document.addEventListener("DOMContentLoaded", function(){
     createCategories();
     initPromotions();
 });
+
+/* =========================================================
+   CATALOG PAGE NAVIGATION - FINAL
+   Home stays as the landing page; Products becomes a focused catalog.
+========================================================= */
+
+const _baseShowHome = showHome;
+const _baseShowCategories = showCategories;
+const _baseShowProducts = showProducts;
+const _baseShowProductDetail = showProductDetail;
+const _baseScrollToProducts = scrollToProducts;
+
+function setPageMode(mode) {
+    document.body.classList.toggle("catalog-mode", mode === "catalog");
+    document.body.classList.toggle("home-mode", mode === "home");
+
+    const sections = {
+        home: document.getElementById("home"),
+        promotions: document.getElementById("promotions"),
+        quick: document.querySelector(".quick-categories"),
+        products: document.getElementById("products"),
+        services: document.getElementById("services"),
+        about: document.getElementById("about"),
+        contact: document.getElementById("contact")
+    };
+
+    if (mode === "catalog") {
+        [sections.home, sections.promotions, sections.quick, sections.services, sections.about, sections.contact].forEach(el => { if (el) el.style.display = "none"; });
+        if (sections.products) sections.products.style.display = "block";
+    } else {
+        [sections.home, sections.promotions, sections.quick, sections.services, sections.about, sections.contact].forEach(el => { if (el) el.style.display = ""; });
+        if (sections.products) sections.products.style.display = "block";
+    }
+}
+
+function updateCatalogHeader(category = "") {
+    const current = document.getElementById("catalog-breadcrumb-current");
+    const title = document.getElementById("catalog-page-title");
+    const subtitle = document.getElementById("catalog-page-subtitle");
+
+    if (!current || !title || !subtitle) return;
+
+    if (category) {
+        current.textContent = translateCategory(category).toUpperCase();
+        title.textContent = translateCategory(category);
+        subtitle.textContent = categoryDescriptions[category] || "";
+    } else {
+        current.textContent = t("productsLabel");
+        title.textContent = t("catalogTitle");
+        subtitle.textContent = currentLanguage === "en"
+            ? "Mechanical and industrial components for machinery, automation and manufacturing."
+            : currentLanguage === "zh"
+                ? "为机械、自动化和工业生产提供机械零部件。"
+                : "Linh kiện cơ khí & công nghiệp cho máy móc, tự động hóa và sản xuất.";
+    }
+}
+
+function openCatalog() {
+    setPageMode("catalog");
+    _baseShowCategories();
+    updateCatalogHeader("");
+    history.replaceState(null, "", window.location.pathname + window.location.search + "#products");
+    closeMobileMenu();
+    const section = document.getElementById("products");
+    if (section) section.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function openCatalogCategory(category) {
+    setPageMode("catalog");
+    _baseShowProducts(category, true);
+    updateCatalogHeader(category);
+    closeMobileMenu();
+}
+
+showHome = function() {
+    setPageMode("home");
+    _baseShowHome();
+    updateCatalogHeader("");
+};
+
+showCategories = function() {
+    setPageMode("catalog");
+    _baseShowCategories();
+    updateCatalogHeader("");
+};
+
+showProducts = function(category, updateHash = true) {
+    setPageMode("catalog");
+    _baseShowProducts(category, updateHash);
+    updateCatalogHeader(category);
+};
+
+showProductDetail = function(code, updateHash = true) {
+    setPageMode("catalog");
+    _baseShowProductDetail(code, updateHash);
+    const p = products.find(x => x.code === code);
+    updateCatalogHeader(p ? p.category : "");
+};
+
+scrollToProducts = function() {
+    openCatalog();
+};
+
+// Make every category card a clear catalog entry.
+function enhanceCategoryNavigation() {
+    document.querySelectorAll("#category-grid .category-card").forEach(card => {
+        const onclick = card.getAttribute("onclick") || "";
+        const match = onclick.match(/showProducts\('(.+?)'\)/);
+        if (match) {
+            card.setAttribute("title", `Xem danh mục ${match[1]}`);
+            card.setAttribute("role", "button");
+        }
+    });
+}
+
+// Extend the existing category renderer without changing product data.
+const _catalogCreateCategories = createCategories;
+createCategories = function() {
+    _catalogCreateCategories();
+    enhanceCategoryNavigation();
+};
+
+// Ensure translated catalog heading refreshes when language changes.
+const _catalogSetLanguage = setLanguage;
+setLanguage = function(lang) {
+    _catalogSetLanguage(lang);
+    updateCatalogHeader(currentCategory || "");
+};
+
+// Hash routing: #products means catalog, while category/product hashes remain direct.
+const _catalogLoadFromHash = loadFromHash;
+loadFromHash = function() {
+    const hash = window.location.hash;
+    if (hash === "#products") {
+        openCatalog();
+        return;
+    }
+    _catalogLoadFromHash();
+};
+
+// Run after all original startup handlers are registered.
+document.addEventListener("DOMContentLoaded", function() {
+    if (!window.location.hash) {
+        setPageMode("home");
+        updateCatalogHeader("");
+    }
+    enhanceCategoryNavigation();
+});
