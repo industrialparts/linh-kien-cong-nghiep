@@ -1,29 +1,87 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>INDUSTRIAL PARTS</title>
-    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
+
 <header class="header">
+
     <div class="container nav">
 
-        <a href="index.html" class="logo">
+
+        <!-- LOGO -->
+
+        <a
+            href="index.html"
+            class="logo"
+        >
             INDUSTRIAL PARTS
         </a>
 
+
+        <!-- MENU -->
+
         <nav>
-            <a href="index.html" data-i18n="home">Trang chủ</a>
-            <a href="index.html#products" data-i18n="products">Sản phẩm</a>
-            <a href="index.html#about" data-i18n="about">Giới thiệu</a>
-            <a href="index.html#contact" data-i18n="contact">Liên hệ</a>
+
+            <a
+                href="index.html"
+                data-i18n="home"
+            >
+                Trang chủ
+            </a>
+
+
+            <a
+                href="#products"
+                data-i18n="products"
+            >
+                Sản phẩm
+            </a>
+
+
+            <a
+                href="#about"
+                data-i18n="about"
+            >
+                Giới thiệu
+            </a>
+
+
+            <a
+                href="#contact"
+                data-i18n="contact"
+            >
+                Liên hệ
+            </a>
+
         </nav>
 
+
+        <!-- SEARCH + LANGUAGE -->
+
         <div class="actions">
+
+
             <input
                 id="search"
                 type="search"
@@ -31,71 +89,126 @@
                 data-i18n-placeholder="search"
             >
 
+
             <select id="lang">
-                <option value="vi">VI</option>
-                <option value="en">EN</option>
-                <option value="zh">中</option>
+
+                <option value="vi">
+                    VI
+                </option>
+
+                <option value="en">
+                    EN
+                </option>
+
+                <option value="zh">
+                    中
+                </option>
+
             </select>
+
+
         </div>
 
+
     </div>
+
 </header>
 
+
+
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
     <div class="container hero-inner">
 
+
         <div>
+
 
             <span class="eyebrow">
                 LINH KIỆN TIÊU CHUẨN CÔNG NGHIỆP
             </span>
 
+
             <h1 data-i18n="heroTitle">
-                Giải pháp linh kiện cho máy móc & tự động hóa
+
+                Giải pháp linh kiện
+                cho máy móc & tự động hóa
+
             </h1>
 
+
             <p data-i18n="heroText">
-                Danh mục sản phẩm dễ mở rộng, tra cứu nhanh
-                và gửi yêu cầu báo giá trực tiếp.
+
+                Danh mục sản phẩm dễ mở rộng,
+                tra cứu nhanh và gửi yêu cầu
+                báo giá trực tiếp.
+
             </p>
 
-            <a href="#products" class="btn">
+
+            <a
+                href="#products"
+                class="btn"
+                data-i18n="viewProducts"
+            >
                 Xem sản phẩm
             </a>
 
+
         </div>
+
 
 
         <div class="stat">
 
-            <b>1000+</b>
+            <b>
+                1000+
+            </b>
 
-            <span>
+
+            <span data-i18n="catalog">
+
                 mã sản phẩm có thể mở rộng
+
             </span>
 
+
         </div>
+
 
     </div>
 
 </section>
 
 
-<section class="container section" id="products">
+
+<!-- ================= PRODUCTS ================= -->
+
+<section
+    class="container section"
+    id="products"
+>
+
 
     <div class="section-head">
 
+
         <div>
+
 
             <span class="eyebrow">
                 PRODUCTS
             </span>
 
+
             <h2 data-i18n="featuredTitle">
-                Sản phẩm nổi bật
+
+                Danh mục sản phẩm
+
             </h2>
+
 
         </div>
 
@@ -103,82 +216,166 @@
         <select id="category">
 
             <option value="all">
+
                 Tất cả danh mục
+
             </option>
 
         </select>
 
+
     </div>
 
 
-    <div id="productGrid" class="grid"></div>
+
+    <!-- ================= CATEGORY ================= -->
+
+    <div class="category-links">
+
+
+        <a
+            href="category.html?cat=nhom-dinh-hinh"
+            class="category-link"
+        >
+
+            <strong>
+                Nhôm định hình
+            </strong>
+
+
+            <span>
+                Xem danh mục →
+            </span>
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- ================= PRODUCT GRID ================= -->
+
+    <div
+        id="productGrid"
+        class="grid"
+    ></div>
+
 
 </section>
 
 
+
+<!-- ================= ADVERTISEMENT ================= -->
+
 <section class="ad container">
 
+
     <div>
+
 
         <span class="eyebrow">
             QUẢNG CÁO
         </span>
 
+
         <h2 data-i18n="adTitle">
-            Giải pháp linh kiện sẵn sàng cho đơn hàng của bạn
+
+            Giải pháp linh kiện
+            sẵn sàng cho đơn hàng của bạn
+
         </h2>
 
+
         <p data-i18n="adText">
-            Khu vực này dùng để quảng cáo sản phẩm
-            hoặc nhóm hàng chủ lực.
+
+            Khu vực này dùng để quảng cáo
+            sản phẩm hoặc nhóm hàng chủ lực.
+
         </p>
+
 
     </div>
 
-    <a href="#contact" class="btn light">
+
+    <a
+        href="#contact"
+        class="btn light"
+    >
         Liên hệ ngay
     </a>
+
 
 </section>
 
 
-<section class="container section" id="about">
+
+<!-- ================= ABOUT ================= -->
+
+<section
+    class="container section"
+    id="about"
+>
+
 
     <span class="eyebrow">
         ABOUT
     </span>
 
+
     <h2 data-i18n="aboutTitle">
+
         Linh kiện tiêu chuẩn hàng công nghiệp
+
     </h2>
 
+
     <p data-i18n="aboutText">
+
         Cung cấp và tư vấn linh kiện cơ khí,
-        nhôm định hình và phụ kiện phục vụ chế tạo máy,
-        tự động hóa và sản xuất.
+        nhôm định hình và phụ kiện phục vụ
+        chế tạo máy, tự động hóa và sản xuất.
+
     </p>
+
 
 </section>
 
 
-<section class="contact section" id="contact">
+
+<!-- ================= CONTACT ================= -->
+
+<section
+    class="contact section"
+    id="contact"
+>
+
 
     <div class="container contact-inner">
 
+
         <div>
+
 
             <span class="eyebrow">
                 CONTACT
             </span>
 
+
             <h2 data-i18n="contactTitle">
+
                 Gửi yêu cầu báo giá
+
             </h2>
 
+
             <p data-i18n="contactText">
-                Chọn sản phẩm rồi liên hệ qua Zalo
-                để trao đổi nhanh.
+
+                Chọn sản phẩm rồi liên hệ
+                qua Zalo để trao đổi nhanh.
+
             </p>
+
 
         </div>
 
@@ -188,29 +385,49 @@
             href="https://zalo.me/SDT-CUA-ANH"
             target="_blank"
         >
+
             Liên hệ Zalo
+
         </a>
+
 
     </div>
 
+
 </section>
 
+
+
+<!-- ================= FLOATING ZALO ================= -->
 
 <a
     class="zalo"
     href="https://zalo.me/SDT-CUA-ANH"
     target="_blank"
 >
+
     Zalo
+
 </a>
 
 
+
+<!-- ================= FOOTER ================= -->
+
 <footer>
+
     © 2026 INDUSTRIAL PARTS
+
 </footer>
 
 
+
+<!-- ================= JAVASCRIPT ================= -->
+
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
+```
