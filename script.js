@@ -1720,3 +1720,175 @@ document.addEventListener(
 
     }
 );
+
+/* =========================================================
+   INDUSTRIAL PARTS - UI ENHANCEMENT LAYER
+   Language + promoted products + safer rendering
+========================================================= */
+
+const SITE_ZALO = "https://zalo.me/0358854410";
+let currentLanguage = localStorage.getItem("industrialPartsLanguage") || "vi";
+let promoProducts = [];
+let promoIndex = 0;
+let promoTimer = null;
+
+const translations = {
+    vi: {
+        navHome:"Trang chủ", navProducts:"Sản phẩm", navServices:"Dịch vụ", navAbout:"Giới thiệu", navContact:"Liên hệ",
+        searchTitle:"Linh kiện cơ khí & công nghiệp", searchSubtitle:"Tra cứu nhanh mã hàng, tên sản phẩm và thông số kỹ thuật",
+        searchPlaceholder:"Tìm mã sản phẩm, tên sản phẩm, quy cách...", catalogTitle:"Danh mục sản phẩm",
+        backCategory:"Danh mục", categorySearchPlaceholder:"Tìm trong danh mục...", servicesTitle:"Dịch vụ", aboutTitle:"Giới thiệu", contactTitle:"Liên hệ",
+        featuredTitle:"Sản phẩm nổi bật", featuredSubtitle:"Một số sản phẩm được giới thiệu nhanh", sendRequest:"Gửi yêu cầu", phone:"Số điện thoại", name:"Họ tên", message:"Nội dung yêu cầu",
+        viewProducts:"Xem sản phẩm", quote:"Yêu cầu báo giá", contactZalo:"Liên hệ Zalo", details:"Xem chi tiết →",
+        product:"SẢN PHẨM", code:"Mã sản phẩm", specs:"Thông số kỹ thuật", noResult:"Không tìm thấy sản phẩm.",
+        searchNoResult:"Không tìm thấy sản phẩm phù hợp với", products:"sản phẩm", category:"Danh mục", next:"Tiếp theo"
+    },
+    en: {
+        navHome:"Home", navProducts:"Products", navServices:"Services", navAbout:"About", navContact:"Contact",
+        searchTitle:"Mechanical & Industrial Components", searchSubtitle:"Search product codes, names and technical specifications",
+        searchPlaceholder:"Search product code, name or specification...", catalogTitle:"Product Catalog",
+        backCategory:"Categories", categorySearchPlaceholder:"Search this category...", servicesTitle:"Services", aboutTitle:"About Us", contactTitle:"Contact",
+        featuredTitle:"Featured Products", featuredSubtitle:"A quick selection of products", sendRequest:"Send Request", phone:"Phone", name:"Name", message:"Request details",
+        viewProducts:"View Products", quote:"Request a Quote", contactZalo:"Contact via Zalo", details:"View details →",
+        product:"PRODUCT", code:"Product code", specs:"Technical specifications", noResult:"No products found.",
+        searchNoResult:"No matching product was found for", products:"products", category:"Category", next:"Next"
+    },
+    zh: {
+        navHome:"首页", navProducts:"产品", navServices:"服务", navAbout:"关于我们", navContact:"联系我们",
+        searchTitle:"机械与工业零部件", searchSubtitle:"快速搜索产品型号、名称和技术参数",
+        searchPlaceholder:"搜索产品型号、名称或规格...", catalogTitle:"产品目录",
+        backCategory:"产品分类", categorySearchPlaceholder:"搜索此分类...", servicesTitle:"服务", aboutTitle:"关于我们", contactTitle:"联系我们",
+        featuredTitle:"推荐产品", featuredSubtitle:"精选产品快速展示", sendRequest:"提交需求", phone:"电话号码", name:"姓名", message:"需求内容",
+        viewProducts:"查看产品", quote:"询价", contactZalo:"联系 Zalo", details:"查看详情 →",
+        product:"产品", code:"产品型号", specs:"技术参数", noResult:"没有找到产品。",
+        searchNoResult:"未找到匹配产品", products:"个产品", category:"分类", next:"下一步"
+    }
+};
+
+const categoryTranslations = {
+    "Nhôm định hình": {en:"Aluminum Profiles", zh:"铝型材"},
+    "Bản lề": {en:"Hinges", zh:"铰链"},
+    "Bánh xe": {en:"Industrial Casters", zh:"工业脚轮"},
+    "Chân tăng chỉnh": {en:"Leveling Feet", zh:"调节脚"},
+    "Nam châm": {en:"Magnets", zh:"磁铁"},
+    "Vòng bi": {en:"Bearings", zh:"轴承"},
+    "Bu lông & ốc vít": {en:"Bolts & Screws", zh:"螺栓与螺钉"}
+};
+
+const productNameTranslations = {
+    "Nhôm định hình": {en:"Aluminum Profile", zh:"铝型材"},
+    "Bản lề nhôm": {en:"Aluminum Hinge", zh:"铝合金铰链"},
+    "Bánh xe công nghiệp": {en:"Industrial Caster", zh:"工业脚轮"},
+    "Chân tăng chỉnh": {en:"Leveling Foot", zh:"调节脚"},
+    "Nam châm tròn": {en:"Round Magnet", zh:"圆形磁铁"},
+    "Vòng bi": {en:"Bearing", zh:"轴承"},
+    "Bu lông lục giác": {en:"Hex Bolt", zh:"六角螺栓"}
+};
+
+function t(key) { return (translations[currentLanguage] && translations[currentLanguage][key]) || translations.vi[key] || key; }
+function translateCategory(category) { return currentLanguage === "vi" ? category : ((categoryTranslations[category] || {})[currentLanguage] || category); }
+function translateProductName(name) { return currentLanguage === "vi" ? name : ((productNameTranslations[name] || {})[currentLanguage] || name); }
+function setLanguage(lang) {
+    if (!translations[lang]) return;
+    currentLanguage = lang;
+    localStorage.setItem("industrialPartsLanguage", lang);
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+    applyLanguage();
+    createCategories();
+    if (currentProduct) showProductDetail(currentProduct.code, false);
+    else if (currentCategory) showProducts(currentCategory, false);
+    renderPromotions();
+}
+function applyLanguage() {
+    document.querySelectorAll("[data-i18n]").forEach(el => { const key=el.dataset.i18n; if (translations[currentLanguage][key]) el.textContent=translations[currentLanguage][key]; });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => { const key=el.dataset.i18nPlaceholder; if (translations[currentLanguage][key]) el.placeholder=translations[currentLanguage][key]; });
+    const textMap = {".btn-primary":"viewProducts",".btn-secondary":"quote",".submit-btn":"sendRequest",".contact-zalo":"contactZalo"};
+    Object.entries(textMap).forEach(([sel,key]) => document.querySelectorAll(sel).forEach(el => { if(translations[currentLanguage][key]) el.textContent=translations[currentLanguage][key]; }));
+    const labels = [["#name","name"],["#phone","phone"],["#message","message"]];
+    labels.forEach(([sel,key]) => { const el=document.querySelector(`label[for="${sel.slice(1)}"]`); if(el && translations[currentLanguage][key]) el.textContent=translations[currentLanguage][key]; });
+    document.querySelectorAll(".lang-btn").forEach(btn => btn.classList.toggle("active", btn.dataset.lang===currentLanguage));
+    const title=document.querySelector("title");
+    if(title) title.textContent = currentLanguage === "vi" ? "Linh Kiện Công Nghiệp | Industrial Parts" : currentLanguage === "en" ? "Industrial Parts | Mechanical Components" : "工业零部件 | Industrial Parts";
+}
+
+function getFeaturedProducts() {
+    const preferred = ["NH-2020","NH-3030","NH-4040","BX-100","BB-6200","CTC-M12"];
+    const chosen = preferred.map(code => products.find(p=>p.code===code)).filter(Boolean);
+    return chosen.length ? chosen : products.slice(0,6);
+}
+function initPromotions() {
+    promoProducts = getFeaturedProducts();
+    promoIndex = 0;
+    renderPromotions();
+    clearInterval(promoTimer);
+    promoTimer = setInterval(() => changePromo(1), 4500);
+}
+function changePromo(direction) {
+    if (!promoProducts.length) return;
+    promoIndex = (promoIndex + direction + promoProducts.length) % promoProducts.length;
+    renderPromotions();
+}
+function renderPromotions() {
+    const slider=document.getElementById("promo-slider"), dots=document.getElementById("promo-dots");
+    if(!slider || !promoProducts.length) return;
+    const p=promoProducts[promoIndex], image=getProductImages(p.code)[0];
+    slider.innerHTML=`<article class="promo-card">
+        <div class="promo-image"><img src="${image}" alt="${escapeHtml(p.code)}" onerror="this.style.visibility='hidden'"></div>
+        <div class="promo-copy"><span class="promo-kicker">${escapeHtml(translateCategory(p.category))}</span>
+        <div class="promo-code">${escapeHtml(p.code)}</div><h3>${escapeHtml(translateProductName(p.name))}</h3>
+        <p>${escapeHtml(p.spec)}</p><button type="button" class="promo-button" onclick="showProductDetail('${escapeAttribute(p.code)}')">${escapeHtml(t('details'))}</button></div>
+    </article>`;
+    dots.innerHTML=promoProducts.map((_,i)=>`<button type="button" class="promo-dot ${i===promoIndex?'active':''}" onclick="promoIndex=${i}; renderPromotions()" aria-label="${i+1}"></button>`).join("");
+}
+
+// Keep the original product engine, then refresh visible dynamic labels.
+const _originalCreateCategories = createCategories;
+createCategories = function(){ _originalCreateCategories();
+    document.querySelectorAll("#category-grid .category-card").forEach(card=>{ const h=card.querySelector("h3"); if(h) h.textContent=translateCategory(h.textContent); const a=card.querySelector(".category-arrow"); if(a){const n=a.textContent.match(/\d+/)?.[0]||""; a.textContent=`${n} ${t('products')} →`;}});
+};
+
+const _originalShowProducts = showProducts;
+showProducts = function(category, updateHash=true){ _originalShowProducts(category, updateHash); const title=document.getElementById("product-category-title"); if(title) title.textContent=translateCategory(category); const count=document.getElementById("category-product-count"); if(count){const n=products.filter(p=>p.category===category).length; count.textContent=`${n} ${t('products')}`;} };
+
+const _originalRenderProductList = renderProductList;
+renderProductList = async function(list){ await _originalRenderProductList(list); document.querySelectorAll("#product-list .product-card").forEach(card=>{ const n=card.querySelector(".product-name"), l=card.querySelector(".product-card-link"); if(n){ const p=products.find(x=>x.name===n.textContent.trim()); if(p)n.textContent=translateProductName(p.name); } if(l)l.textContent=t('details'); }); };
+
+const _originalShowProductDetail = showProductDetail;
+showProductDetail = function(code, updateHash=true){ _originalShowProductDetail(code, updateHash); const p=products.find(x=>x.code===code); if(!p)return; const info=document.querySelector("#product-detail .detail-info"); if(!info)return;
+    const label=info.querySelector(".section-label"); if(label)label.textContent=t('product');
+    const codeEl=info.querySelector(".detail-code"); if(codeEl)codeEl.innerHTML=`${t('code')}: <strong>${escapeHtml(p.code)}</strong>`;
+    const name=info.querySelector("h1"); if(name)name.textContent=translateProductName(p.name);
+    const specTitle=info.querySelector(".spec-title"); if(specTitle)specTitle.textContent=t('specs');
+    const zalo=info.querySelector(".detail-zalo"); if(zalo){zalo.href=SITE_ZALO; zalo.textContent=`💬 ${t('contactZalo')}`;}
+    const req=info.querySelector(".detail-request"); if(req)req.textContent=t('quote');
+    const back=document.querySelector(".detail-back span[data-i18n='backCategory']"); if(back)back.textContent=t('backCategory');
+};
+
+// Better category-safe lookup for translated product cards.
+const _originalFilterCategoryProducts = filterCategoryProducts;
+filterCategoryProducts = function(keyword){ _originalFilterCategoryProducts(keyword); };
+
+// Fix mobile menu class mismatch from the older version.
+toggleMobileMenu = function(){ const nav=document.getElementById("main-nav"); if(nav) nav.classList.toggle("show"); };
+closeMobileMenu = function(){ const nav=document.getElementById("main-nav"); if(nav) nav.classList.remove("show"); };
+
+// Improve contact behavior: prefill the request and open Zalo after user confirmation.
+sendMessage = function(event){
+    event.preventDefault();
+    const name=document.getElementById("name")?.value.trim()||"";
+    const phone=document.getElementById("phone")?.value.trim()||"";
+    const message=document.getElementById("message")?.value.trim()||"";
+    if(!name||!phone||!message){ alert(currentLanguage==='vi'?"Vui lòng nhập đầy đủ thông tin.":currentLanguage==='en'?"Please complete all fields.":"请填写完整信息。"); return false; }
+    const text=`${currentLanguage==='vi'?'Xin chào':'Hello'}, ${name}.\n\n${t('phone')}: ${phone}\n\n${message}`;
+    const url=SITE_ZALO;
+    alert(currentLanguage==='vi'?"Thông tin đã được ghi nhận. Zalo sẽ mở để anh/chị liên hệ trực tiếp.":currentLanguage==='en'?"Your request is ready. Zalo will open for direct contact.":"需求信息已准备好，将打开 Zalo 供您直接联系。");
+    window.open(url,"_blank","noopener");
+    return false;
+};
+
+// Start enhancements after the existing startup handler has run.
+document.addEventListener("DOMContentLoaded", function(){
+    applyLanguage();
+    createCategories();
+    initPromotions();
+});

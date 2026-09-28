@@ -20,9 +20,13 @@
 
     <div class="header-inner">
 
-        <a href="#" class="logo" onclick="showHome(); return false;">
-            <span class="logo-main">INDUSTRIAL</span>
-            <span class="logo-sub">PARTS</span>
+        <a href="#" class="logo" onclick="showHome(); return false;" aria-label="Industrial Parts">
+            <img src="images/logo.png" alt="INDUSTRIAL PARTS" class="site-logo"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="logo-fallback">
+                <span class="logo-main">INDUSTRIAL</span>
+                <span class="logo-sub">PARTS</span>
+            </span>
         </a>
 
         <button class="mobile-menu-btn"
@@ -33,38 +37,48 @@
 
         <nav class="main-nav" id="main-nav">
 
-            <a href="#" onclick="showHome(); return false;">
+            <a href="#" data-i18n="navHome" onclick="showHome(); return false;">
                 Trang chủ
             </a>
 
-            <a href="#products"
+            <a href="#products" data-i18n="navProducts"
                onclick="scrollToProducts(); closeMobileMenu();">
                 Sản phẩm
             </a>
 
-            <a href="#services"
+            <a href="#services" data-i18n="navServices"
                onclick="closeMobileMenu();">
                 Dịch vụ
             </a>
 
-            <a href="#about"
+            <a href="#about" data-i18n="navAbout"
                onclick="closeMobileMenu();">
                 Giới thiệu
             </a>
 
-            <a href="#contact"
+            <a href="#contact" data-i18n="navContact"
                onclick="closeMobileMenu();">
                 Liên hệ
             </a>
 
         </nav>
 
-        <a class="header-zalo"
+        <div class="header-actions">
+
+            <div class="language-switcher" aria-label="Language">
+                <button type="button" class="lang-btn active" data-lang="vi" onclick="setLanguage('vi')">VI</button>
+                <button type="button" class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+                <button type="button" class="lang-btn" data-lang="zh" onclick="setLanguage('zh')">中文</button>
+            </div>
+
+            <a class="header-zalo"
            href="https://zalo.me/0358854410"
            target="_blank"
            rel="noopener">
             Zalo
-        </a>
+            </a>
+
+        </div>
 
     </div>
 
@@ -78,9 +92,9 @@
     <div class="search-container">
 
         <div class="search-title">
-            <h1>Linh kiện cơ khí & công nghiệp</h1>
+            <h1 data-i18n="searchTitle">Linh kiện cơ khí & công nghiệp</h1>
             <p>
-                Tra cứu nhanh mã hàng, tên sản phẩm và thông số kỹ thuật
+                <span data-i18n="searchSubtitle">Tra cứu nhanh mã hàng, tên sản phẩm và thông số kỹ thuật</span>
             </p>
         </div>
 
@@ -91,7 +105,7 @@
             <input
                 type="text"
                 id="product-search"
-                placeholder="Tìm mã sản phẩm, tên sản phẩm, quy cách..."
+                placeholder="Tìm mã sản phẩm, tên sản phẩm, quy cách..." data-i18n-placeholder="searchPlaceholder"
                 autocomplete="off"
                 oninput="searchProducts(this.value)"
             >
@@ -149,13 +163,13 @@
                     <button
                         class="btn-primary"
                         onclick="scrollToProducts()">
-                        Xem sản phẩm
+                        <span data-i18n="viewProducts">Xem sản phẩm</span>
                     </button>
 
                     <a
                         class="btn-secondary"
                         href="#contact">
-                        Yêu cầu báo giá
+                        <span data-i18n="quote">Yêu cầu báo giá</span>
                     </a>
 
                 </div>
@@ -187,6 +201,46 @@
 </section>
 
 
+<!-- ================= PROMOTED PRODUCTS ================= -->
+<section id="promotions" class="promotion-section" aria-label="Promoted products">
+    <div class="promotion-container">
+        <div class="promotion-heading">
+            <div>
+                <span class="section-label">FEATURED</span>
+                <h2 data-i18n="featuredTitle">Sản phẩm nổi bật</h2>
+                <p data-i18n="featuredSubtitle">Một số sản phẩm được giới thiệu nhanh</p>
+            </div>
+            <div class="promotion-controls">
+                <button type="button" onclick="changePromo(-1)" aria-label="Previous">‹</button>
+                <button type="button" onclick="changePromo(1)" aria-label="Next">›</button>
+            </div>
+        </div>
+        <div id="promo-slider" class="promo-slider"></div>
+        <div id="promo-dots" class="promo-dots"></div>
+    </div>
+</section>
+
+<!-- ================= QUICK CATEGORIES ================= -->
+<section class="quick-categories" aria-label="Tra cứu nhanh theo nhóm sản phẩm">
+    <div class="quick-container">
+        <div class="quick-heading">
+            <div>
+                <span class="section-label">QUICK ACCESS</span>
+                <h2>Tra cứu nhanh</h2>
+            </div>
+            <button type="button" class="quick-all" onclick="scrollToProducts()">Xem danh mục →</button>
+        </div>
+        <div class="quick-grid">
+            <button type="button" class="quick-card" onclick="scrollToProducts()"><span class="quick-icon">▦</span><span><strong>Nhôm định hình</strong><small>Profile & phụ kiện</small></span></button>
+            <button type="button" class="quick-card" onclick="scrollToProducts()"><span class="quick-icon">◉</span><span><strong>Bánh xe</strong><small>Casters & bánh xe công nghiệp</small></span></button>
+            <button type="button" class="quick-card" onclick="scrollToProducts()"><span class="quick-icon">◎</span><span><strong>Vòng bi</strong><small>Bearing & phụ kiện</small></span></button>
+            <button type="button" class="quick-card" onclick="scrollToProducts()"><span class="quick-icon">⌗</span><span><strong>Linh kiện cơ khí</strong><small>Bu lông, bản lề, chân tăng...</small></span></button>
+            <button type="button" class="quick-card" onclick="scrollToProducts()"><span class="quick-icon">△</span><span><strong>Dụng cụ cắt</strong><small>Dao phay & phụ kiện</small></span></button>
+        </div>
+    </div>
+</section>
+
+
 <!-- ================= PRODUCTS ================= -->
 
 <section id="products" class="products-section">
@@ -201,7 +255,7 @@
                 </span>
 
                 <h2>
-                    Danh mục sản phẩm
+                    <span data-i18n="catalogTitle">Danh mục sản phẩm</span>
                 </h2>
             </div>
 
@@ -231,7 +285,7 @@
                     type="button"
                     class="back-btn"
                     onclick="showCategories()">
-                    ← Danh mục
+                    ← <span data-i18n="backCategory">Danh mục</span>
                 </button>
 
                 <div>
@@ -255,7 +309,7 @@
                 <input
                     type="text"
                     id="category-search"
-                    placeholder="Tìm trong danh mục..."
+                    placeholder="Tìm trong danh mục..." data-i18n-placeholder="categorySearchPlaceholder"
                     oninput="filterCategoryProducts(this.value)"
                 >
 
@@ -278,7 +332,7 @@
                 type="button"
                 class="back-btn detail-back"
                 onclick="goBackToCategory()">
-                ← Quay lại danh mục
+                ← <span data-i18n="backCategory">Quay lại danh mục</span>
             </button>
 
             <div id="product-detail"></div>
@@ -305,7 +359,7 @@
                 </span>
 
                 <h2>
-                    Dịch vụ
+                    <span data-i18n="servicesTitle">Dịch vụ</span>
                 </h2>
 
             </div>
@@ -520,7 +574,7 @@
                 <button
                     type="submit"
                     class="submit-btn">
-                    Gửi yêu cầu
+                    <span data-i18n="sendRequest">Gửi yêu cầu</span>
                 </button>
 
             </form>
@@ -564,10 +618,9 @@
     target="_blank"
     rel="noopener"
     aria-label="Liên hệ Zalo">
-
+    <span class="zalo-pulse"></span>
     <span class="zalo-icon">Z</span>
     <span class="zalo-text">Zalo</span>
-
 </a>
 
 
