@@ -1,1 +1,236 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Danh mục sản phẩm - INDUSTRIAL PARTS</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="container nav">
+
+        <a href="index.html" class="logo">
+            INDUSTRIAL PARTS
+        </a>
+
+        <nav>
+
+            <a href="index.html" data-i18n="home">
+                Trang chủ
+            </a>
+
+            <a href="index.html#products" data-i18n="products">
+                Sản phẩm
+            </a>
+
+            <a href="index.html#about" data-i18n="about">
+                Giới thiệu
+            </a>
+
+            <a href="index.html#contact" data-i18n="contact">
+                Liên hệ
+            </a>
+
+        </nav>
+
+        <div class="actions">
+
+            <input
+                id="search"
+                type="search"
+                placeholder="Tìm sản phẩm..."
+                data-i18n-placeholder="search"
+            >
+
+            <select id="lang">
+                <option value="vi">VI</option>
+                <option value="en">EN</option>
+                <option value="zh">中</option>
+            </select>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="container section">
+
+    <div style="margin-bottom:20px">
+
+        <a href="index.html">
+            ← Trang chủ
+        </a>
+
+    </div>
+
+
+    <div class="section-head">
+
+        <div>
+
+            <span class="eyebrow">
+                CATEGORY
+            </span>
+
+            <h1 id="categoryTitle">
+                Danh mục sản phẩm
+            </h1>
+
+            <p id="categoryDescription">
+                Các sản phẩm trong danh mục.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div id="categoryGrid" class="grid"></div>
+
+</main>
+
+
+<a
+    class="zalo"
+    href="https://zalo.me/SDT-CUA-ANH"
+    target="_blank">
+    Zalo
+</a>
+
+
+<footer>
+    © 2026 INDUSTRIAL PARTS
+</footer>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const category =
+        params.get("cat");
+
+    const categoryNames = {
+
+        "nhom-dinh-hinh":
+            "Nhôm định hình"
+
+    };
+
+
+    const categoryDescriptions = {
+
+        "nhom-dinh-hinh":
+            "Nhôm định hình và phụ kiện dùng cho khung máy, bàn thao tác và hệ thống tự động hóa."
+
+    };
+
+
+    const title =
+        categoryNames[category]
+        || "Danh mục sản phẩm";
+
+
+    const description =
+        categoryDescriptions[category]
+        || "Các sản phẩm trong danh mục.";
+
+
+    document.querySelector("#categoryTitle")
+        .textContent = title;
+
+
+    document.querySelector("#categoryDescription")
+        .textContent = description;
+
+
+    const list = products.filter(function(product) {
+
+        return product.category === title;
+
+    });
+
+
+    const grid =
+        document.querySelector("#categoryGrid");
+
+
+    if (list.length === 0) {
+
+        grid.innerHTML = `
+            <p>
+                Chưa có sản phẩm trong danh mục này.
+            </p>
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML = list.map(function(product) {
+
+        return `
+
+        <article class="product">
+
+            <img
+                src="${product.image}"
+                alt="${product.name}"
+                onerror="this.src='images/placeholder.svg'"
+            >
+
+            <div class="product-body">
+
+                <div class="code">
+                    ${product.code}
+                </div>
+
+                <h3>
+                    ${product.name}
+                </h3>
+
+                <p>
+                    ${product.spec}
+                </p>
+
+                <a
+                    class="btn"
+                    href="product.html?code=${encodeURIComponent(product.code)}">
+                    Xem chi tiết
+                </a>
+
+            </div>
+
+        </article>
+
+        `;
+
+    }).join("");
+
+});
+
+</script>
+
+</body>
+</html>
+```
 
