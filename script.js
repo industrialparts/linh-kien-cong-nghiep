@@ -1,3 +1,4 @@
+
 const products = [
 
     {
@@ -179,75 +180,105 @@ const languages = {
 };
 
 
+/* Tạo đường dẫn chi tiết sản phẩm */
+function getProductUrl(code) {
+    return `product.html?code=${encodeURIComponent(code)}`;
+}
+
+
+/* Hiển thị danh sách sản phẩm */
 function renderProducts(list = products) {
 
-    const grid =
-        document.querySelector("#productGrid");
+    const grid = document.querySelector("#productGrid");
 
     if (!grid) return;
 
+    grid.innerHTML = list.map(product => {
 
-    grid.innerHTML = list.map(product => `
+        const url = getProductUrl(product.code);
 
-        <article class="product">
-
-            <img
-                src="${product.image}"
-                alt="${product.name}"
-                onerror="this.src='images/placeholder.svg'"
-            >
-
-            <div class="product-body">
-
-                <div class="code">
-                    ${product.code}
-                </div>
-
-                <h3>
-                    ${product.name}
-                </h3>
-
-                <p>
-                    ${product.spec}
-                </p>
+        return `
+            <article class="product">
 
                 <a
-                    class="btn"
-                    href="product.html?code=${encodeURIComponent(product.code)}"
+                    class="product-image-link"
+                    href="${url}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Xem ${product.name}"
                 >
-                    Xem chi tiết
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                        onerror="this.onerror=null;this.src='images/placeholder.svg';"
+                    >
                 </a>
 
-            </div>
+                <div class="product-body">
 
-        </article>
+                    <div class="code">
+                        ${product.code}
+                    </div>
 
-    `).join("");
+                    <h3>
+                        <a
+                            href="${url}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            ${product.name}
+                        </a>
+                    </h3>
+
+                    <p>
+                        ${product.spec}
+                    </p>
+
+                    <p>
+                        ${product.desc}
+                    </p>
+
+                    <a
+                        class="btn"
+                        href="${url}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Xem chi tiết
+                    </a>
+
+                </div>
+
+            </article>
+        `;
+
+    }).join("");
 
 }
 
 
+/* Thiết lập danh mục */
 function setupCategories() {
 
-    const select =
-        document.querySelector("#category");
+    const select = document.querySelector("#category");
 
     if (!select) return;
 
-
-    const categories =
-        [...new Set(
-            products.map(product => product.category)
-        )];
-
+    const categories = [
+        ...new Set(products.map(product => product.category))
+    ];
 
     categories.forEach(category => {
 
-        const option =
-            document.createElement("option");
+        const exists = [...select.options].some(
+            option => option.value === category
+        );
+
+        if (exists) return;
+
+        const option = document.createElement("option");
 
         option.value = category;
-
         option.textContent = category;
 
         select.appendChild(option);
@@ -257,161 +288,116 @@ function setupCategories() {
 }
 
 
+/* Tìm kiếm và lọc sản phẩm */
 function filterProducts() {
 
-    const search =
-        (
-            document.querySelector("#search")?.value
-            || ""
-        ).toLowerCase();
-
+    const search = (
+        document.querySelector("#search")?.value || ""
+    ).trim().toLowerCase();
 
     const category =
-        document.querySelector("#category")?.value
-        || "all";
+        document.querySelector("#category")?.value || "all";
 
+    const result = products.filter(product => {
 
-    const result =
-        products.filter(product => {
+        const text = `
+            ${product.name}
+            ${product.code}
+            ${product.spec}
+            ${product.desc}
+            ${product.category}
+        `.toLowerCase();
 
-            const text =
-                `${product.name}
-                ${product.code}
-                ${product.spec}`.toLowerCase();
+        return (
+            (category === "all" || product.category === category)
+            && text.includes(search)
+        );
 
-
-            return (
-
-                (category === "all"
-                    || product.category === category)
-
-                &&
-
-                text.includes(search)
-
-            );
-
-        });
-
+    });
 
     renderProducts(result);
 
 }
 
 
+/* Chuyển ngôn ngữ */
 function setLanguage(language) {
 
-    const data =
-        languages[language];
+    const data = languages[language];
 
     if (!data) return;
 
+    document.querySelectorAll("[data-i18n]").forEach(element => {
 
-    document
-        .querySelectorAll("[data-i18n]")
-        .forEach(element => {
+        const key = element.dataset.i18n;
 
-            const key =
-                element.dataset.i18n;
+        if (data[key]) {
+            element.textContent = data[key];
+        }
 
-            if (data[key]) {
+    });
 
-                element.textContent =
-                    data[key];
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
 
-            }
+        const key = element.dataset.i18nPlaceholder;
 
-        });
+        if (data[key]) {
+            element.placeholder = data[key];
+        }
 
+    });
 
-    document
-        .querySelectorAll("[data-i18n-placeholder]")
-        .forEach(element => {
-
-            const key =
-                element.dataset.i18nPlaceholder;
-
-            if (data[key]) {
-
-                element.placeholder =
-                    data[key];
-
-            }
-
-        });
-
-
-    localStorage.setItem(
-        "language",
-        language
-    );
+    try {
+        localStorage.setItem("language", language);
+    } catch (error) {
+        // Website vẫn hoạt động nếu trình duyệt chặn localStorage.
+    }
 
 }
 
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+/* Khởi chạy website */
+document.addEventListener("DOMContentLoaded", () => {
 
-        setupCategories();
+    setupCategories();
 
-        renderProducts();
+    renderProducts();
 
+    const search = document.querySelector("#search");
+    const category = document.querySelector("#category");
 
-        const search =
-            document.querySelector("#search");
+    if (search) {
+        search.addEventListener("input", filterProducts);
+    }
 
-        const category =
-            document.querySelector("#category");
+    if (category) {
+        category.addEventListener("change", filterProducts);
+    }
 
-        if (search) {
+    const lang = document.querySelector("#lang");
 
-            search.addEventListener(
-                "input",
-                filterProducts
-            );
+    if (lang) {
 
+        let saved = "vi";
+
+        try {
+            saved = localStorage.getItem("language") || "vi";
+        } catch (error) {
+            // Dùng tiếng Việt mặc định.
         }
 
-
-        if (category) {
-
-            category.addEventListener(
-                "change",
-                filterProducts
-            );
-
+        if (!languages[saved]) {
+            saved = "vi";
         }
 
+        lang.value = saved;
 
-        const lang =
-            document.querySelector("#lang");
+        setLanguage(saved);
 
-
-        if (lang) {
-
-            const saved =
-                localStorage.getItem("language")
-                || "vi";
-
-
-            lang.value = saved;
-
-            setLanguage(saved);
-
-
-            lang.addEventListener(
-                "change",
-                event => {
-
-                    setLanguage(
-                        event.target.value
-                    );
-
-                }
-            );
-
-        }
+        lang.addEventListener("change", event => {
+            setLanguage(event.target.value);
+        });
 
     }
-);
+
+});
