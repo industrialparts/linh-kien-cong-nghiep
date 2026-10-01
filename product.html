@@ -1,162 +1,30 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Chi tiết sản phẩm</title>
-
-    <link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Thông tin chi tiết sản phẩm linh kiện công nghiệp.">
+  <title>Chi tiết sản phẩm | Industrial Parts</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
+<body data-page="product">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Trang chủ"><span class="brand-mark">IP</span><span class="brand-copy"><strong>INDUSTRIAL PARTS</strong><small>Linh kiện tiêu chuẩn hàng công nghiệp</small></span></a>
+    <nav class="main-nav" aria-label="Điều hướng chính"><a href="index.html">Trang chủ</a><a href="index.html#categories">Danh mục</a><a href="index.html#about">Giới thiệu</a><a href="index.html#contact">Liên hệ</a></nav>
+    <label class="language-picker"><span class="sr-only">Ngôn ngữ</span><select id="lang" aria-label="Chọn ngôn ngữ"><option value="vi">Việt</option><option value="en">English</option><option value="zh">中文</option></select></label>
+  </header>
+  <main class="page-main">
+    <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>›</span><a id="productCategoryLink" href="category.html?cat=nhom-dinh-hinh">Nhôm định hình</a><span>›</span><span id="breadcrumbProduct">Chi tiết sản phẩm</span></div>
+    <a id="backToCategory" class="back-link back-above" href="category.html?cat=nhom-dinh-hinh">← Quay lại danh mục</a>
+    <section id="productDetail" class="product-detail">
+      <div class="loading-box">Đang tải thông tin sản phẩm…</div>
+    </section>
+    <section class="section related-section"><div class="section-heading"><h2>Sản phẩm khác</h2><a href="index.html#featured" class="text-link">Xem toàn bộ sản phẩm →</a></div><div id="relatedGrid" class="product-grid"></div></section>
+  </main>
+  <footer class="site-footer"><span>© <span id="year"></span> Industrial Parts</span><span>Thông tin sản phẩm</span></footer>
+  <a class="floating-zalo" href="https://zalo.me/SDT-CUA-ANH" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">Zalo</a>
 
-
-<body>
-
-
-<header class="header">
-
-    <div class="container nav">
-
-        <a href="index.html" class="logo">
-            INDUSTRIAL PARTS
-        </a>
-
-
-        <nav>
-
-            <a href="index.html">
-                Trang chủ
-            </a>
-
-            <a href="index.html#products">
-                Sản phẩm
-            </a>
-
-            <a href="index.html#about">
-                Giới thiệu
-            </a>
-
-            <a href="index.html#contact">
-                Liên hệ
-            </a>
-
-        </nav>
-
-
-        <div class="actions">
-
-            <select id="lang">
-
-                <option>VI</option>
-                <option>EN</option>
-                <option>中</option>
-
-            </select>
-
-        </div>
-
-    </div>
-
-</header>
-
-
-<main class="container section">
-
-    <a href="index.html#products">
-        ← Quay lại sản phẩm
-    </a>
-
-
-    <div id="detail"></div>
-
-</main>
-
-
-<a
-    class="zalo"
-    href="https://zalo.me/SDT-CUA-ANH"
-    target="_blank"
->
-    Zalo
-</a>
-
-
-<script src="script.js"></script>
-
-
-<script>
-
-const code =
-    new URLSearchParams(location.search).get("code");
-
-
-const product =
-    products.find(p => p.code === code) || products[0];
-
-
-document.querySelector("#detail").innerHTML = `
-
-<div class="detail">
-
-    <img
-        src="${product.image}"
-        onerror="this.src='images/placeholder.svg'"
-        alt="${product.name}"
-    >
-
-
-    <div>
-
-        <span class="eyebrow">
-            ${product.category}
-        </span>
-
-
-        <h1>
-            ${product.name}
-        </h1>
-
-
-        <p>
-            <b>Mã sản phẩm:</b>
-            ${product.code}
-        </p>
-
-
-        <p>
-            <b>Quy cách:</b>
-            ${product.spec}
-        </p>
-
-
-        <p>
-            ${product.desc}
-        </p>
-
-
-        <a
-            class="btn"
-            href="https://zalo.me/SDT-CUA-ANH"
-            target="_blank"
-        >
-            Liên hệ Zalo
-        </a>
-
-    </div>
-
-</div>
-
-`;
-
-</script>
-
-
+  <dialog id="imageViewer" class="image-viewer"><button type="button" class="viewer-close" id="viewerClose" aria-label="Đóng">×</button><img id="viewerImage" src="" alt="Ảnh sản phẩm phóng to"></dialog>
 </body>
 </html>

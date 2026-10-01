@@ -1,236 +1,26 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Danh mục sản phẩm - INDUSTRIAL PARTS</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Danh mục linh kiện công nghiệp.">
+  <title>Danh mục sản phẩm | Industrial Parts</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-
-<body>
-
-<header class="header">
-
-    <div class="container nav">
-
-        <a href="index.html" class="logo">
-            INDUSTRIAL PARTS
-        </a>
-
-        <nav>
-
-            <a href="index.html" data-i18n="home">
-                Trang chủ
-            </a>
-
-            <a href="index.html#products" data-i18n="products">
-                Sản phẩm
-            </a>
-
-            <a href="index.html#about" data-i18n="about">
-                Giới thiệu
-            </a>
-
-            <a href="index.html#contact" data-i18n="contact">
-                Liên hệ
-            </a>
-
-        </nav>
-
-        <div class="actions">
-
-            <input
-                id="search"
-                type="search"
-                placeholder="Tìm sản phẩm..."
-                data-i18n-placeholder="search"
-            >
-
-            <select id="lang">
-                <option value="vi">VI</option>
-                <option value="en">EN</option>
-                <option value="zh">中</option>
-            </select>
-
-        </div>
-
-    </div>
-
-</header>
-
-
-<main class="container section">
-
-    <div style="margin-bottom:20px">
-
-        <a href="index.html">
-            ← Trang chủ
-        </a>
-
-    </div>
-
-
-    <div class="section-head">
-
-        <div>
-
-            <span class="eyebrow">
-                CATEGORY
-            </span>
-
-            <h1 id="categoryTitle">
-                Danh mục sản phẩm
-            </h1>
-
-            <p id="categoryDescription">
-                Các sản phẩm trong danh mục.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div id="categoryGrid" class="grid"></div>
-
-</main>
-
-
-<a
-    class="zalo"
-    href="https://zalo.me/SDT-CUA-ANH"
-    target="_blank">
-    Zalo
-</a>
-
-
-<footer>
-    © 2026 INDUSTRIAL PARTS
-</footer>
-
-
-<script src="script.js"></script>
-
-
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const params =
-        new URLSearchParams(window.location.search);
-
-    const category =
-        params.get("cat");
-
-    const categoryNames = {
-
-        "nhom-dinh-hinh":
-            "Nhôm định hình"
-
-    };
-
-
-    const categoryDescriptions = {
-
-        "nhom-dinh-hinh":
-            "Nhôm định hình và phụ kiện dùng cho khung máy, bàn thao tác và hệ thống tự động hóa."
-
-    };
-
-
-    const title =
-        categoryNames[category]
-        || "Danh mục sản phẩm";
-
-
-    const description =
-        categoryDescriptions[category]
-        || "Các sản phẩm trong danh mục.";
-
-
-    document.querySelector("#categoryTitle")
-        .textContent = title;
-
-
-    document.querySelector("#categoryDescription")
-        .textContent = description;
-
-
-    const list = products.filter(function(product) {
-
-        return product.category === title;
-
-    });
-
-
-    const grid =
-        document.querySelector("#categoryGrid");
-
-
-    if (list.length === 0) {
-
-        grid.innerHTML = `
-            <p>
-                Chưa có sản phẩm trong danh mục này.
-            </p>
-        `;
-
-        return;
-
-    }
-
-
-    grid.innerHTML = list.map(function(product) {
-
-        return `
-
-        <article class="product">
-
-            <img
-                src="${product.image}"
-                alt="${product.name}"
-                onerror="this.src='images/placeholder.svg'"
-            >
-
-            <div class="product-body">
-
-                <div class="code">
-                    ${product.code}
-                </div>
-
-                <h3>
-                    ${product.name}
-                </h3>
-
-                <p>
-                    ${product.spec}
-                </p>
-
-                <a
-                    class="btn"
-                    href="product.html?code=${encodeURIComponent(product.code)}">
-                    Xem chi tiết
-                </a>
-
-            </div>
-
-        </article>
-
-        `;
-
-    }).join("");
-
-});
-
-</script>
-
+<body data-page="category">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Trang chủ"><span class="brand-mark">IP</span><span class="brand-copy"><strong>INDUSTRIAL PARTS</strong><small>Linh kiện tiêu chuẩn hàng công nghiệp</small></span></a>
+    <nav class="main-nav" aria-label="Điều hướng chính"><a href="index.html">Trang chủ</a><a href="index.html#categories">Danh mục</a><a href="index.html#about">Giới thiệu</a><a href="index.html#contact">Liên hệ</a></nav>
+    <label class="language-picker"><span class="sr-only">Ngôn ngữ</span><select id="lang" aria-label="Chọn ngôn ngữ"><option value="vi">Việt</option><option value="en">English</option><option value="zh">中文</option></select></label>
+  </header>
+  <main class="page-main">
+    <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>›</span><span id="breadcrumbCategory">Danh mục sản phẩm</span></div>
+    <section class="page-title-row"><div><span class="eyebrow">PRODUCT CATEGORY</span><h1 id="categoryTitle">Danh mục sản phẩm</h1><p id="categoryDescription">Tra cứu mã hàng và thông số sản phẩm.</p></div><a class="back-link" href="index.html#categories">← Tất cả danh mục</a></section>
+    <section class="search-panel"><div class="search-field"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Tìm sản phẩm..." data-i18n-placeholder="search" autocomplete="off"></div><select id="category" aria-label="Lọc theo danh mục"><option value="all">Tất cả danh mục</option></select></section>
+    <section class="section compact-section"><div class="section-heading"><h2>Sản phẩm trong danh mục</h2><span id="resultCount" class="section-note"></span></div><div id="productGrid" class="product-grid" aria-live="polite"></div><p id="emptyState" class="empty-state" hidden>Danh mục này chưa có dữ liệu sản phẩm.</p></section>
+  </main>
+  <footer class="site-footer"><span>© <span id="year"></span> Industrial Parts</span><span>Danh mục linh kiện công nghiệp</span></footer>
+  <a class="floating-zalo" href="https://zalo.me/SDT-CUA-ANH" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ qua Zalo">Zalo</a>
 </body>
 </html>
-```
-
